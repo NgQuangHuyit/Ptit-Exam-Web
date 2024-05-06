@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra</title>
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/notice.css">
+    <link rel="stylesheet" href="../../assets/fonts/fontawesome-free-6.5.1-web/css/all.min.css">
+    <script src="../../assets/js/lib.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/testpage.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const correctAnswers = document.querySelectorAll('.question-result--correct').length;
+            const totalQuestions = document.querySelectorAll('.question-result').length;
+            const examGrade = (correctAnswers / totalQuestions * 10).toFixed(2);
+            document.getElementById('correct-answers').textContent = correctAnswers;
+            document.getElementById('total-questions').textContent = totalQuestions;
+            document.getElementById('exam-grade').textContent = examGrade;
+
+            window.jsPDF = window.jspdf.jsPDF;
+            var docPDF = new jsPDF();
+
+            function downloadPDF(fileName){
+
+                elementToHides = document.querySelectorAll('.header, .download-btn')
+                elementToHides.forEach((elementToHide) => {
+                    elementToHide.style.display = 'none';
+                });
+                window.print();
+                elementToHides.forEach((elementToHide) => {
+                    elementToHide.style.display = '';
+                });
+            }
+
+            document.querySelector('.download-btn').addEventListener('click', () => {
+                downloadPDF('result');
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="notice"></div>
+    <header class="header">
+        <div class="header__title" style="margin-left: 70px;">Kiem tra</div>
+        <div class="header__spacer"></div>
+        <div class="header__avt">
+            <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+        </div>
+        <div class="header__logout">
+            <a href="../index.html"> 
+              <i class="fa-solid fa-house"></i>
+            </a>
+        </div>
+      </header>
+    <h1>Ket qua bai thi</h1>
+    <div class="container" style="margin: 30px auto;">
+        <button class="download-btn">Save as pdf</button>
+        <div id="result-page" class="page">
+            <div style="padding: 10px">
+                <h2>Thông tin thí sinh</h2>
+                <p id="score" style="margin-top: 15px;">Họ tên: <strong>Nguyen Van A</strong></p>
+                <p id="grade">ID: <strong>B21DCCN435</strong></p>
+            </div>
+            <div style="padding: 10px">
+                <h2>Kết Quả</h2>
+                <p id="score">Số câu trả lời đúng: <span id="correct-answers"></span> / <span id="total-questions"></span></p>
+                <p id="grade">Điểm số: <span id="exam-grade"></span></p>
+            </div>
+            <div id="answers-container" class="answers-container">
+                <div class="question-result question-result--correct">
+                    <p class="question-text"><strong>Câu hỏi 1:</strong> Câu hỏi 1: Các mạng máy tính được thiết kế và cài đặt theo quan điểm:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Có cấu trúc đa tầng</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> A. Có cấu trúc đa tầng</p>
+                </div>
+            
+                <div class="question-result question-result--incorrect">
+                    <p class="question-text"><strong>Câu hỏi 2:</strong> Câu hỏi 2: Khi sử dụng mạng máy tính ta sẽ thu được các lợi ích:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Chia sẻ tài nguyên (ổ cứng, cơ sở dữ liệu, máy in, các phần mềm tiện ích...)</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> D. Tất cả đều đúngD</p>
+                </div>
+            
+                <div class="question-result question-result--incorrect">
+                    <p class="question-text"><strong>Câu hỏi 3:</strong> Câu hỏi 3: Đơn vị cơ bản đo tốc độ truyền dữ liệu là:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Bit</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> C. Bps (bit per second)</p>
+                </div>
+            
+                <div class="question-result question-result--incorrect">
+                    <p class="question-text"><strong>Câu hỏi 4:</strong> Câu hỏi 4: Quá trình dữ liệu di chuyển từ hệ thống máy tính này sang hệ thống máy tính khác phải trải qua giai đoạn nào:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Phân tích dữ liệu</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> C. Đóng gói</p>
+                </div>
+            
+                <div class="question-result question-result--incorrect">
+                    <p class="question-text"><strong>Câu hỏi 5:</strong> Câu hỏi 5: Kết nối mạng sử dụng các giao thức khác nhau bằng các:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Bộ chuyển tiếp</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> D. Bộ định tuyến</p>
+                </div>
+            
+                <div class="question-result question-result--incorrect">
+                    <p class="question-text"><strong>Câu hỏi 6:</strong> Câu hỏi 6: Nhược điểm của mạng dạng hình sao (Star) là:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Khó cài đặt và bảo trì</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> C. Cần quá nhiều cáp để kết nối tới nút mạng trung tâm</p>
+                </div>
+            
+                <div class="question-result question-result--incorrect">
+                    <p class="question-text"><strong>Câu hỏi 7:</strong> Câu hỏi 7: Đặc điểm của mạng dạng Bus:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Tất cả các nút mạng kết nối vào nút mạng trung tâm (ví dụ như Hub)</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> B. Tất cả các nút kết nối trên cùng một đường truyền vật lý</p>
+                </div>
+            
+                <div class="question-result question-result--correct">
+                    <p class="question-text"><strong>Câu hỏi 8:</strong> Câu hỏi 8: Trong kỹ thuật chuyển mạch kênh, trước khi trao đổi thông tin, hệ thống sẽ thiết lập kết nối giữa 2 thực thể bằng một:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Đường truyền vật lý</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> A. Đường truyền vật lý</p>
+                </div>
+            
+                <div class="question-result question-result--incorrect">
+                    <p class="question-text"><strong>Câu hỏi 9:</strong> Câu hỏi 9: Kết nối liên mạng các mạng LAN, WAN, MAN độc lập với nhau bằng các thiết bị có chức năng:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Kiểm soát lỗi, kiểm soát luồng</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> B. Định tuyến</p>
+                </div>
+            
+                <div class="question-result question-result--incorrect">
+                    <p class="question-text"><strong>Câu hỏi 10:</strong> Câu hỏi 10: Cáp UTP Cat5e sử dụng đầu nối:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. RJ - 58</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> C. RJ - 45</p>
+                </div>
+            
+                <div class="question-result question-result--incorrect">
+                    <p class="question-text"><strong>Câu hỏi 11:</strong> Câu hỏi 11: Cáp UTP Cat 5 có bao nhiêu đôi cáp:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. 2</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> B. 4</p>
+                </div>
+            
+                <div class="question-result question-result--incorrect">
+                    <p class="question-text"><strong>Câu hỏi 12:</strong> Câu hỏi 12: Đặc điểm quan trọng của kiến trúc mạng client/server (khách/chủ):</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Client/server là kiến trúc phân cấp, client đóng vai trò yêu cầu và server đáp ứng lại các yêu cầu đó.</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> C. Câu A và B đều đúng</p>
+                </div>
+            
+                <div class="question-result question-result--incorrect">
+                    <p class="question-text"><strong>Câu hỏi 13:</strong> Câu hỏi 13: Khẳng định nào sau đây là đúng khi nói về mạng có cấu trúc điểm- điểm:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Mạng quảng bá</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> C. Mạng lưu và chuyển tiếp (Store - and - Forward)</p>
+                </div>
+            
+                <div class="question-result question-result--incorrect">
+                    <p class="question-text"><strong>Câu hỏi 14:</strong> Câu hỏi 14: Khẳng định nào sau đây là đúng khi nói về nhược điểm của mạng có cấu trúc điểm-điểm:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Khả năng đụng độ thông tin (collision) thấp</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> B. Hiệu suất sử dụng đường truyền thấp, chiếm dụng nhiều tài nguyên</p>
+                </div>
+            
+                <div class="question-result question-result--correct">
+                    <p class="question-text"><strong>Câu hỏi 15:</strong> Câu hỏi 15: Khẳng định nào sau đây là đúng khi nói về đặc trưng của mạng quảng bá:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Tất cả các node cùng truy nhập chung trên một đường truyền vật lý</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> A. Tất cả các node cùng truy nhập chung trên một đường truyền vật lý</p>
+                </div>
+            
+                <div class="question-result question-result--correct">
+                    <p class="question-text"><strong>Câu hỏi 16:</strong> Câu hỏi 16: Khẳng định nào sau đây là đúng khi nói về mạng chuyển mạch kênh:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Thiết lập liên kết vật lý, truyền dữ liệu và giải phóng liên kết giữa 2 thực thể</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> A. Thiết lập liên kết vật lý, truyền dữ liệu và giải phóng liên kết giữa 2 thực thể</p>
+                </div>
+            
+                <div class="question-result question-result--incorrect">
+                    <p class="question-text"><strong>Câu hỏi 17:</strong> Câu hỏi 17: Khẳng định nào sau đây là đúng khi nói về mạng chuyển mạch gói:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Gói tin lưu chuyển trên các kết nối logic</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> D. Gói tin lưu chuyển trên các kết nối logic hướng đích và trên một đường có thể có nhiều gói tin cùng lưu chuyển</p>
+                </div>
+            
+                <div class="question-result question-result--incorrect">
+                    <p class="question-text"><strong>Câu hỏi 18:</strong> Câu hỏi 18: Khẳng định nào sau đây là đúng khi nói về quá trình phân mảnh gói tin:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Làm giảm thời gian xử lý</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> D. Tăng tốc độ trao đổi thông tin trong mạng</p>
+                </div>
+            
+                <div class="question-result question-result--correct">
+                    <p class="question-text"><strong>Câu hỏi 19:</strong> Câu hỏi 19: Khẳng định nào sau đây là đúng khi nói về truyền dữ liệu theo phương thức hướng liên kết:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Có độ tin cậy cao, đảm bảo chất lượng dịch vụ và có xác nhận</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> A. Có độ tin cậy cao, đảm bảo chất lượng dịch vụ và có xác nhận</p>
+                </div>
+            
+                <div class="question-result question-result--incorrect">
+                    <p class="question-text"><strong>Câu hỏi 20:</strong> Câu hỏi 20: Khẳng định nào sau đây là đúng nói về cấu trúc vật lý của mạng:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Giao thức mạng (Protocol)</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> B. Hình trạng mạng (Topology )</p>
+                </div>
+            </div> <!-- Container cho câu trả lời và đáp án -->
+        </div>
+    </div>
+</body>
+</html>

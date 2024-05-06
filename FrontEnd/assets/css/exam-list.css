@@ -1,0 +1,120 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.header {
+    height: 48px;
+    width: 100%;
+    background-color: #ba2623; /* Màu đỏ */
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header__title {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.header__title .menu-option {
+    display: none;
+}
+
+.header__avt img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.header__logout {
+    margin-left: auto;
+}
+
+.header__logout a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.4rem;
+}
+
+.middle {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.middle h1 {
+    margin-bottom: 10px;
+}
+
+.middle p {
+    margin-bottom: 100px;
+}
+ 
+.main-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.exam-option {
+    width: 22%;
+    height: 200%; /* Chiều dài gấp đôi chiều rộng */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.exam-option .box {
+    text-align: center;
+}
+
+.exam-option .box:hover {
+    transform: scale(1.1);
+}
+
+.exam-option .img img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.exam-option h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.exam-option p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.exam-option .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff5722;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.exam-option .btn:hover {
+    background-color: #e64a19;
+}
+

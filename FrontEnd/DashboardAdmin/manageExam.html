@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <script src="../assets/js/lib.js"></script>
+    <script> checkTokenValid()</script>
+    <script src="../assets/js/examApi.js"></script>
+    <link rel="stylesheet" href="../assets/css/notice.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../assets/js/manageExam.js"></script>
+    <title>AdminPage</title>
+</head>
+<body>
+    <div id="notice"></div>
+    <div class="navbar">
+        <div class="navbar__logo-container">
+          <img
+              src="https://code.ptit.edu.vn/2020/images/logo_ptit.png"
+              alt="logo_ptit"
+              width="30"
+          />
+        </div>
+        <a class="navbar__item" href="/DashboardAdmin/manageExam.html">Manage exam</a>
+        <a class="navbar__item" href="/DashboardAdmin/manageUser.html">Manage user</a>
+        <a class="navbar__item" href="/DashboardAdmin/index.html">Dashboard</a>
+        <div class="navbar__profile">
+          <img
+            class="navbar__profile__avatar"
+            src="https://code.ptit.edu.vn/2020/images/avt.png"
+            alt=""
+            onclick="toggleInfo()"
+            width="35"
+          />
+          <!-- information card -->
+          <div class="navbar__profile__card" id="adminCard">
+            
+          </div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="header" style="text-align: center; margin-bottom: 50px; margin-top: 20px;">
+            <h1>
+                Quản lý đề thi
+            </h1>
+        </div>
+    
+        <div class="search-container"> 
+            <div class="search"> 
+                <div class="row"> 
+                    <div class="col-md-12"> 
+                        <div> 
+                            <form class="search-box" id="search-form" > 
+                                <i class='bx bxs-map' ></i> 
+                                <input type="" placeholder="Search value" id="search-input"> 
+                                <button type="submit">Search</button> 
+                            </form> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div>
+        </div>
+        <form class="filter-box mt-3" id="filter-form">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                  <label>Môn thi</label>
+                  <select id="filter-subject" name="subject" class="form-control exam-form-field" required>
+                      <option disabled selected value="">Select</option>
+                      <option value="Toán rời rạc">Toán rời rạc</option>
+                      <option value="Lập trình web">Lập trình web</option>
+                      <option value="Cơ sở dữ liêu">Cơ sở dữ liêu</option>
+                      <option value="Mạng máy tính">Mạng máy tính</option>
+                      <option value="other">Other</option>
+                  </select>
+              </div>
+          </div>
+              <div class="col-md-5">
+                  <div class="form-group">
+                      <label>Active</label>
+                      <select id="filter-status" name="active" class="form-control exam-form-field" required>
+                          <option disabled selected value="">Select</option>
+                          <option value="true">Yes</option>
+                          <option value="false">No</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="col-md-1" style="display: flex; align-items: center;">
+                <button type="submit">Lọc</button>
+          </div>
+          </div>
+        </form>
+
+        <div>
+            <a href="examForm.html" class="btn btn-primary" style="margin: 5px; color: white;">
+                <i class="fa-solid fa-plus"></i>
+        
+            </a>
+        </div>
+
+        <div class="exam-list">
+            <div class="gradient-custom-1 h-100">
+                <div class="mask d-flex align-items-center h-100">
+                  <div class="container">
+                    <div class="row justify-content-center">
+                      <div class="col-md-12">
+                        <div class="table-responsive bg-white">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col" class="col-1">#</th>
+                                <th scope="col" class="col-2">Title</th>
+                                <th scope="col" class="col-2">Subject</th>
+                                <th scope="col" class="col-1">Dur</th>
+                                <th scope="col" class="col-1">QuesCnt</th>
+                                <th scope="col" class="col-1">Active</th>
+                                <th scope="col" class="col-3"> Action</th>
+                              </tr>
+                            </thead>
+                            <tbody id="tbody_tbl1">
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        </div>
+        
+    </div>
+    
+</body>
+</html>
+

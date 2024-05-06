@@ -1,0 +1,101 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #ba2623;
+    padding: 10px;
+
+}
+.navbar__logo-container {
+background-color: #fff;
+width: 35px;
+height: 35px;
+border-radius: 50%;
+overflow: hidden;
+margin-left: 30px;
+}
+.logo {
+    object-fit: cover;
+    object-position: center center;
+}
+.navbar__item ,
+.edit {
+background: none;
+color: #fff;
+border: none;
+padding: 10px 20px;
+text-align: center;
+display: inline-block;
+font-size: 16px;
+cursor: pointer;
+margin-left: 20px;
+border-radius: 15px;
+text-decoration: none;
+}
+.navbar__item:hover {
+background-color: #f8f8f8;
+color: rgb(163, 48, 48);
+text-decoration: none;
+}
+.edit {
+text-decoration: none;
+}
+.edit:hover {
+background-color: #ba2623;
+text-decoration: underline;
+}
+.navbar__profile {
+display: flex;
+align-items: center;
+margin-left: auto;
+margin-right: 30px;
+}
+.navbar__profile__avatar {
+cursor: pointer;
+position: relative;
+}
+ul {
+background-color: #fff;
+list-style-type: none;
+text-align: left;
+margin: 0;
+padding: 10px;
+}
+.navbar__profile__card {
+position: absolute;
+margin-right: 30px;
+margin-top: 10px;
+top: 48px;
+right: 10px;
+width: 250px;
+display: none;
+background-color: #fff;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+border-radius: 8px;
+flex-direction: column;
+align-items: center;
+padding: 15px;
+padding-top: 20px;
+z-index: 10;
+}
+
+.card_item {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+}
+
+.card__icon {
+    margin-right: 30px;
+}
+
+.logout {
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+}
+
+.logout:hover {
+    color: red;
+}

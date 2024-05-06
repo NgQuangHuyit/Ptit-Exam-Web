@@ -1,0 +1,239 @@
+body{
+  color: #1a202c;
+  background-color: #e2e8f0;    
+}
+
+.header {
+  height: 48px;
+  width: 100%;
+  background-color: #ba2623;
+  color: white;
+  display: flex;
+}
+
+.header__title {
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-left: 30px;
+  padding: 0;
+  line-height: 48px;
+  text-align: center;
+
+}
+
+.header__avt {
+  display: flex;
+  justify-content: center;
+}
+
+.header__avt img {
+  padding: 10px 14px;
+  background-color: white;
+  border-radius: 40px;
+  margin-right: 15px;
+}
+.header__logout {
+  display: flex;
+  align-items: center;
+  align-self: right;
+  border-radius: 50px;
+  text-align: center;
+  padding: 0 15px;
+  font-size: 1.3rem;
+}
+
+.header__logout:hover {
+  background-color: #fe5658;
+}
+.header__logout a {
+  text-decoration: none;
+  color: white;
+}
+
+.header__spacer {
+  width: 70%;
+}
+
+h1 {
+  margin-top:30px;
+  text-align: center; /* Căn giữa nội dung của h1 */
+}
+
+.container {
+  width: 800px;
+  margin-left: 10px;
+  margin-right: auto;
+  background-color: rgba(255, 255, 255, 0.59);
+  padding: 20px;
+  border:0cqw solid black;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+#navbar table {
+  font-size: 15px; /* Điều chỉnh kích thước chữ */
+  border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 2px;
+}
+
+/* Giảm kích thước của các ô trong bảng */
+#navbar table td {
+  padding: 1px; /* Điều chỉnh padding */
+}
+
+/* Đảm bảo bảng không vượt quá kích thước */
+.navbar-item table {
+  max-height: 100px; /* Đặt chiều cao tối đa */
+  overflow: auto; /* Cho phép cuộn nếu bảng quá lớn */
+}
+.navbar-item {
+  margin-bottom: 10px;
+}
+
+.navbar-item a {
+  color: #333;
+  text-decoration: none;
+}
+
+.navbar-item a:hover {
+  color: blue;
+}
+
+/* Thêm CSS cho câu hỏi */
+.question {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+}
+
+.question p {
+  margin-bottom: 10px;
+}
+
+.question ul {
+  list-style: none;
+  padding: 0;
+}
+
+.question li {
+  margin-bottom: 5px;
+}
+.navbar-i {
+  position: fixed;
+  top: 27%;
+  right: 0;
+  height: autopx;
+  width: 200px; /* Điều chỉnh độ rộng của navbar tùy ý */
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 1px solid #ccc; /* Tạo đường viền bên trái */
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Đổ bóng cho navbar */
+  z-index: 999; /* Đảm bảo navbar hiển thị trên tất cả các phần khác */
+}
+#submit-exam-btn {
+  padding: 20px 20px;
+  /*line-height: normal;*/
+  text-align: center;
+  white-space:nowrap;
+  display: flex;
+  align-items: center;
+  background-color: #35509a;
+  color: white;
+ 
+  
+}
+.btn-text {
+  font-size: 13px; /* Đặt kích thước chữ lớn hơn */
+}
+
+.timer-and-submit {
+  margin-bottom: 10px; /* Tạo khoảng cách dưới của navbar */
+}
+
+.timer-and-submit #timer,
+.timer-and-submit #submit-exam-btn {
+  height: 20px;
+  border-radius: 5px;
+  margin-bottom: 30px; /* Tạo khoảng cách giữa timer và nút submit */
+}
+.timer {
+  font-size: 38px;
+}
+#time-left {
+  display:block;
+}
+table {
+  
+  border-collapse: collapse;
+}
+
+td {
+  padding: 5px;
+}
+.navbar-item {
+  padding: 10px;
+  border: 1px solid #ccc;
+  /*box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.326);*/
+  border-radius: 10px; /* Bo góc tròn cho ô */
+  margin: 20px; /* Tạo khoảng cách giữa các ô */
+  transition: box-shadow 0.3s ease;
+  text-align: center;
+  width:40px;
+  height: 40px;
+}
+
+.navbar-item:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+}
+
+.nav-button {
+  display: block;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background-color: #e0e0e0;
+  border: 1px solid #ccc;
+  text-decoration: none;
+  color: #333;
+  align-self: center;
+}
+
+.nav-button:hover {
+  background-color: #ccc;
+}
+result-page {
+  display: none;
+}
+
+.question-result {
+  margin: 20px auto;
+  padding: 15px;
+}
+
+.question-result p {
+  padding: 3px;
+}
+
+.question-result--correct {
+  border: green 2px solid;
+  border-radius: 8px;
+  background-color: #d4edda;
+}
+
+.question-result--incorrect {
+  border: red 2px solid;
+  border-radius: 8px;
+  background-color: #faf0f1;
+}
+
+.correct-answer {
+  font-weight: bold;
+  color: green;
+}
+
+#exam-grade{
+  color: green;
+}
+

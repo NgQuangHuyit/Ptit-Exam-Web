@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chính</title>
+    <link rel="stylesheet" href="assets/css/notice.css">
+    <script src="assets/js/notice.js"></script>
+    <link rel="stylesheet" href="assets/fonts/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="assets/js/lib.js"></script>
+    <script src="assets/js/userApi.js"></script>
+    <script src="assets/js/main.js" defer></script> 
+</head>
+<body>
+    <div id="notice"></div>
+    <div class="bg-image--left">
+        <img src="https://code.ptit.edu.vn/2020/images/bg_left.png" alt="">
+    </div>
+
+    <div class="bg-image--right">
+        <img src="https://code.ptit.edu.vn/2020/images/bg_right.png" alt="">
+    </div>
+
+    <div class="wrapper">
+        <!-- Form đăng nhập -->
+        <form action="" id="login-form">
+            <h1>Đăng nhập</h1>
+
+            <!-- Các trường nhập tên người dùng và mật khẩu -->
+            <div class="input-box">
+                <input type="text" name="Username" id="Username" placeholder="Tài khoản" required>
+            </div>
+
+            <div class="input-box">
+                <input type="password" name="Password" id="password" placeholder="Mật khẩu" required>
+            </div>
+
+            <!-- Checkbox nhớ mật khẩu và liên kết quên mật khẩu -->
+            <div class="remember-forgot">
+                <label><input type="checkbox" id="checkbox">Nhớ mật khẩu</label>
+                <a href="#!" id="re-link">Quên mật khẩu?</a>
+            </div>
+
+            <!-- Nút đăng nhập và liên kết đăng ký -->
+            <button type="submit" class="btn">Đăng nhập</button>
+
+            <div class="register-link">
+                <p>Chưa có tài khoản?
+                    <a href="#!" id="register-link">Đăng kí</a>
+                </p>
+            </div>
+        </form>
+
+        <!-- Form đăng ký -->
+        <form action="" id="register-form" style="display: none;">
+            <h1>Đăng ký</h1>
+
+            <!-- Các trường nhập thông tin đăng ký -->
+            <div class="input-box">
+                <input type="text" name="newUsername" id="newUsername" required placeholder="Tên người dùng">
+            </div>
+
+            <div class="input-box">
+                <input type="email" name="email" id="email" required placeholder="Email">
+            </div>
+
+            <div class="input-box">
+                <input type="password" name="newPassword" id="newPassword" required placeholder="Mật khẩu">
+            </div>
+
+            <div class="input-box">
+                <input type="password" name="confirmPassword" id="confirmPassword" required placeholder="Xác nhận mật khẩu">
+            </div>
+
+            <!-- Nút đăng ký và liên kết đăng nhập -->
+            <button type="submit" class="btn">Đăng ký</button>
+
+            <div class="register-link">
+                <p>Đã có tài khoản?
+                    <a href="#!" id="login-link">Đăng nhập</a>
+                </p>
+            </div>
+        </form>
+        <form action="" id="re-form" style="display: none;">
+            <h1>Vui lòng nhập gmail bạn đã đăng kí</h1>
+            <div class="input-box">
+                <input type="email" name="email" id="confirm-email" required placeholder="Email">
+            </div>
+            <button type="submit" class="btn">Xác nhận</button>
+        </form>
+    </div>
+</body>
+</html>

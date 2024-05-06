@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="../assets/css/exam.css">
+    <script src="../assets/js/exam.js"></script>
+    <title>Kiểm tra trắc nghiệm</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__title">
+            Các bài kiểm tra
+        </div>
+        <div class="header__avt">
+            <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+        </div>
+        <div class="header__logout">
+            <a href="../User/index.html"> 
+                <i class='bx bx-log-out'></i>
+            </a>
+        </div>
+    </header>
+    <div class="wrapper">
+        <div class="main-content">
+            <form action="" method="post" id="form-submit-generate">
+                <h1>Đề Kiểm Tra Trắc Nghiệm</h1>
+                <div class="select-content-ques">
+                    <h3>B1: Chọn môn và trạng thái</h3>
+                    <div class="select-boxs">
+                        <div class="select-wrapper">
+                            <select id="selectSubject" name="selectSubject">
+                                    <option value="all">Tất cả các môn</option>
+                                    <option value="mmt">Mạng máy tính</option>
+                                    <option value="vat-ly">Vật Lý</option>
+                                    <option value="dai-so">Đại số</option>
+                                    <option value="giai-tich">Giải tích</option>
+                                    <option value="lich-su-Dang">Lịch sử Đảng</option>
+                                    <option value="tieng-anh">Tiếng Anh</option>
+                            </select>
+                        </div>
+                        <div class="select-wrapper">
+                            <select id="selectStatus" name="selectStatus">
+                                    <option value="all">Tất cả trạng thái</option>
+                                    <option value="can-access">Có thể truy cập</option>
+                                    <option value="can-not-access">Không thể truy cập</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="brLine"></div>
+                <div class="select-topic">
+                    <h3>B2: Loại đề</h3>
+                    <div class="topics">
+                        <div class="radio-control-box">
+                            <input type="radio" name="typeExam" id="radio-0">
+                            <label for="radio-0" class="custom-control-label">
+                                <span>
+                                    <b>Đề thi giữa kì, học kì</b>
+                                    <br>
+                                    45 câu / 60'
+                                </span>
+                            </label>
+                        </div>
+                        <div class="radio-control-box">
+                            <input type="radio" name="typeExam" id="radio-1">
+                            <label for="radio-1" class="custom-control-label">
+                                <span>
+                                    <b>Đề kiểm tra 1 tiết</b>
+                                    <br>
+                                    30 câu / 40'
+                                </span>
+                            </label>
+                        </div>
+                        <div class="radio-control-box">
+                            <input type="radio" name="typeExam" id="radio-2">
+                            <label for="radio-2" class="custom-control-label">
+                                <span>
+                                    <b>Đề kiểm tra 15 phút</b>
+                                    <br>
+                                    10 câu / 15'
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="brLine"></div>
+            </form>
+            <div class="skills-test-list" id="exam-list">
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../assets/js/lib.js"></script>
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/fonts/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/notice.css">
+    <link rel="stylesheet" href="../../assets/css/userResult.css">
+    <link rel="stylesheet" href="../../assets/css/navbar.css">
+    <script src="../../assets/js/userApi.js"></script>
+    <script src="../../assets/js/resultApi.js"></script>
+    <script src="../../assets/js/userResult.js"></script>
+    <title>Document</title>
+</head>
+<body>
+  <div id="notice"></div>
+  <div class="navbar">
+    <div class="navbar__logo-container">
+      <img
+          src="https://code.ptit.edu.vn/2020/images/logo_ptit.png"
+          alt="logo_ptit"
+          width="30"
+      />
+    </div>
+    <a class="navbar__item" href="/DashboardAdmin/manageExam.html">Manage exam</a>
+    <a class="navbar__item" href="/DashboardAdmin/manageUser.html">Manage user</a>
+    <a class="navbar__item" href="/DashboardAdmin/index.html">Dashboard</a>
+    <div class="navbar__profile">
+      <img
+        class="navbar__profile__avatar"
+        src="https://code.ptit.edu.vn/2020/images/avt.png"
+        alt=""
+        onclick="toggleInfo()"
+        width="35"
+      />
+      <!-- information card -->
+      <div class="navbar__profile__card" id="adminCard">
+      </div>
+    </div>
+  </div>
+    <div class="container" style="max-width: 1240px;">
+        <div class="main-body">
+              <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex flex-column align-items-center text-center">
+                        <img src="../../assets/images/user-avatar.jpg" alt="Admin" class="rounded-circle" width="150">
+                        <div class="mt-3">
+                          <h4 id="user-fullname">Nguyen Van A</h4>
+                          <p id="username">B21DCCN435</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card mt-3">
+                    <div class="card-body" id="user-infor">
+                      <div class="row">
+                        <div class="col-sm-3" style="display: flex;align-items: center; justify-content: center;">
+                          <h6 class="mb-0">Ho ten:</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <input id="edit-fullname" type="text" class="form-control edit-input" value="Nguyen Van A" disabled>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3" style="display: flex;align-items: center; justify-content: center;">
+                          <i class="fa-solid fa-mars-and-venus" class="info-icon"></i>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <input id="edit-gender" type="text" class="form-control edit-input" value="Nam" disabled>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3" style="display: flex;align-items: center; justify-content: center;">
+                          <i class="fa-regular fa-calendar-days" class="info-icon"></i>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <input id="edit-dob" type="date" class="form-control edit-input" value="2002-12-07" disabled>
+                        </div>
+                      </div>
+
+                      <hr>
+          
+                      <div class="row">
+                        <div class="col-sm-3" style="display: flex;align-items: center; justify-content: center;">
+                          <i class="fa-solid fa-phone" style="font-size: 23px; color: #dc3545;"></i>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <input id="edit-phoneNumber" type="text" class="form-control edit-input" value="0368686868" disabled>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3" style="display: flex;align-items: center; justify-content: center;">
+                          <i class="fa-solid fa-envelope" class="info-icon"></i>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <input id="edit-email" type="text" class="form-control edit-input" value="Anv.b21cn001@stu.ptit.edu.vn" disabled>
+                        </div>
+                      </div>
+                      <hr>  
+                      <div class="row">
+                        <div class="col-sm-12" style="display: flex; justify-content:space-around;">
+                          <button class="btn btn--success btn--size-s " id="edit-btn">Edit</button>
+                          <button class="btn btn--success btn--size-s btn--disabled" disabled id="save-btn">Save</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="d-flex align-items-center mb-3">Lich su lam bai</h5>
+                                <div class="search-container" style="display: flex;">
+                                  <input type="text" id="searchInput_03" class="searchInput" style="margin: 5px;" placeholder="Enter your search query">
+                                  <i class="fa-solid fa-magnifying-glass" style="align-self: center;"></i>   
+                              </div>
+                                <div class="tab__table">
+                                  <table style="width: 100%;">
+                                      <colgroup>
+                                          <col style="width: 100px;">
+                                          <col>
+                                          <col>
+                                          <col>
+                                          <col>
+                                          <col>
+                                          <col>
+                                      </colgroup>
+                                      <thead class="main__container__table__header">
+                                          <th role="columnheader" >#</th>
+                                          <th role="columnheader" scope="col">Ten ky thi</th>
+                                          <th role="columnheader" scope="col">Start Time</th>
+                                          <th role="columnheader" scope="col">EndTime</th>
+                                          <th role="columnheader" scope="col">Ket qua</th>
+                                      </thead>
+                                      <tbody id="tbody_tbl1">
+                                          <td class="text-center"><span>1</span></td>
+                                          <td class="text-center">sdfsd</td>
+                                          <td class="text-center">asdfas</td>
+                                          <td class="text-center">sadfa</td>
+                                          <td class="text-center"><a href="">sdgsdgsdf</a></td>
+                                      </tbody>
+                                      
+                                  </table>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+    
+    
+                </div>
+              </div>
+    
+            </div>
+        </div>
+</body>
+</html>
