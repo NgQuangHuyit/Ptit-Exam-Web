@@ -24,6 +24,9 @@ function renderExam(data){
         return row;
 }
 
+function startPage(examId) {
+    
+}
 
 function renderExams(data) {
     document.getElementById('tbody_tbl1').innerHTML = '';
