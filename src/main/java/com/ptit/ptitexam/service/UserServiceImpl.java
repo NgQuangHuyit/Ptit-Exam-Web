@@ -79,7 +79,10 @@ public class UserServiceImpl implements IUserService {
         User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user", "id", id));
         user.setFullname(updateUserInfo.getFullname());
         user.setDob(updateUserInfo.getDob());
-        user.setIsActive(updateUserInfo.getIsActive());
+//        if(updateUserInfo.getIsActive() != null) {
+//            user.setIsActive(updateUserInfo.getIsActive());
+//        }
+//        user.setIsActive(updateUserInfo.getIsActive());
         user.setPhoneNumber(updateUserInfo.getPhoneNumber());
         user.setClassID(updateUserInfo.getClassID());
         userRepository.save(user);

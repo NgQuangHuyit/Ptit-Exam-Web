@@ -265,6 +265,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (result.success) {
                 showSuccessNotice("Thêm câu hỏi thành công");
                 document.getElementById("question-list").appendChild(renderQuestion(result.data));
+                this.reset();
             }
             else {
                 showErrorNotice("Thêm câu hỏi thất bại");

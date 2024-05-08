@@ -58,7 +58,7 @@ function notice({ title = "", message = "", type = "info", duration = 3000 }) {
       const delay = (duration / 1000).toFixed(2);
   
       notice.classList.add("notice");
-      if (type!="info") {
+      if (type!=="info") {
         notice.classList.add(`notice--${type}`);
       }
       notice.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards`;
@@ -150,7 +150,7 @@ function checkTokenValid() {
       fetch("http://localhost:8080/auth/introspect", requestOptions)
         .then((response) => response.json())
         .then((result) => {
-          if (result.valid == true) {
+          if (result.valid === true) {
             console.log("Token is valid");
           }
           else {
@@ -177,4 +177,20 @@ function logout () {
 function editExamPage(id) {
   sessionStorage.setItem("editExamId", id);
   window.location.href = "editExam.html";
+}
+
+function parseDatetime(s) {
+
+  const dateTime = new Date(s);
+
+  // Lấy thông tin ngày, tháng, năm, giờ, phút, giây từ đối tượng Date
+  const year = dateTime.getFullYear();
+  const month = dateTime.getMonth() + 1; // Tháng bắt đầu từ 0 nên cần cộng thêm 1
+  const day = dateTime.getDate();
+  const hour = dateTime.getHours();
+  const minute = dateTime.getMinutes();
+  const second = dateTime.getSeconds();
+
+  // Định dạng lại chuỗi ngày giờ theo định dạng mong muốn
+    return `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')} ${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`;
 }

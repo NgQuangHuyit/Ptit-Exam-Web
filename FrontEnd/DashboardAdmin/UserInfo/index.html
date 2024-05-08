@@ -13,6 +13,56 @@
     <script src="../../assets/js/userApi.js"></script>
     <script src="../../assets/js/resultApi.js"></script>
     <script src="../../assets/js/userResult.js"></script>
+    <style>
+      .search {
+    background-color: #fff;
+    padding: 4px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+
+::placeholder {
+    color: #999393;
+    opacity: 1
+}
+
+.search-box {
+    position: relative;
+    width: 100%
+}
+
+.search-box input {
+    height: 45px;
+    border: none;
+    width: 100%;
+    padding-left: 18px;
+    padding-right: 100px
+}
+
+.search-box input:focus {
+}
+
+.search-box i {
+    position: absolute;
+    top: 12px;
+    left: -10px;
+    font-size: 24px;
+    color: #eee
+}
+
+.search-box button{
+    position: absolute;
+    right: 1px;
+    top: 0px;
+    border: none;
+    height: 45px;
+    background-color: red;
+    color: #fff;
+    width: 90px;
+    border-radius: 4px
+}
+    </style>
     <title>Document</title>
 </head>
 <body>
@@ -50,8 +100,8 @@
                       <div class="d-flex flex-column align-items-center text-center">
                         <img src="../../assets/images/user-avatar.jpg" alt="Admin" class="rounded-circle" width="150">
                         <div class="mt-3">
-                          <h4 id="user-fullname">Nguyen Van A</h4>
-                          <p id="username">B21DCCN435</p>
+                          <h4 id="user-fullname"></h4>
+                          <p id="username"></p>
                         </div>
                       </div>
                     </div>
@@ -60,10 +110,19 @@
                     <div class="card-body" id="user-infor">
                       <div class="row">
                         <div class="col-sm-3" style="display: flex;align-items: center; justify-content: center;">
-                          <h6 class="mb-0">Ho ten:</h6>
+                          <h6 class="mb-0">Họ tên:</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          <input id="edit-fullname" type="text" class="form-control edit-input" value="Nguyen Van A" disabled>
+                          <input id="edit-fullname" type="text" class="form-control edit-input" value="" disabled>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3" style="display: flex;align-items: center; justify-content: center;">
+                          <h6 class="mb-0">Lớp:</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <input id="edit-class" type="text" class="form-control edit-input" value="" disabled>
                         </div>
                       </div>
                       <hr>
@@ -72,7 +131,7 @@
                           <i class="fa-solid fa-mars-and-venus" class="info-icon"></i>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          <input id="edit-gender" type="text" class="form-control edit-input" value="Nam" disabled>
+                          <input id="edit-gender" type="text" class="form-control edit-input" value="" disabled>
                         </div>
                       </div>
                       <hr>
@@ -81,7 +140,7 @@
                           <i class="fa-regular fa-calendar-days" class="info-icon"></i>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          <input id="edit-dob" type="date" class="form-control edit-input" value="2002-12-07" disabled>
+                          <input id="edit-dob" type="date" class="form-control edit-input" value="" disabled>
                         </div>
                       </div>
 
@@ -92,7 +151,7 @@
                           <i class="fa-solid fa-phone" style="font-size: 23px; color: #dc3545;"></i>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          <input id="edit-phoneNumber" type="text" class="form-control edit-input" value="0368686868" disabled>
+                          <input id="edit-phoneNumber" type="text" class="form-control edit-input" value="" disabled>
                         </div>
                       </div>
                       <hr>
@@ -101,7 +160,7 @@
                           <i class="fa-solid fa-envelope" class="info-icon"></i>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          <input id="edit-email" type="text" class="form-control edit-input" value="Anv.b21cn001@stu.ptit.edu.vn" disabled>
+                          <input id="edit-email" type="text" class="form-control edit-input" value="" disabled>
                         </div>
                       </div>
                       <hr>  
@@ -120,10 +179,21 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="d-flex align-items-center mb-3">Lich su lam bai</h5>
-                                <div class="search-container" style="display: flex;">
-                                  <input type="text" id="searchInput_03" class="searchInput" style="margin: 5px;" placeholder="Enter your search query">
-                                  <i class="fa-solid fa-magnifying-glass" style="align-self: center;"></i>   
-                              </div>
+                                <div class="search-container"> 
+                                <div class="search"> 
+                                    <div class="row"> 
+                                        <div class="col-md-12"> 
+                                            <div> 
+                                                <form class="search-box" id="search-form" > 
+                                                    <i class='bx bxs-map' ></i> 
+                                                    <input type="text" placeholder="Search value" id="search-input">
+                                                    <button type="submit">Search</button> 
+                                                </form> 
+                                            </div> 
+                                        </div> 
+                                    </div> 
+                                </div>
+                            </div>
                                 <div class="tab__table">
                                   <table style="width: 100%;">
                                       <colgroup>
@@ -136,18 +206,14 @@
                                           <col>
                                       </colgroup>
                                       <thead class="main__container__table__header">
-                                          <th role="columnheader" >#</th>
+                                          <th role="columnheader" class="text-center">#</th>
                                           <th role="columnheader" scope="col">Ten ky thi</th>
                                           <th role="columnheader" scope="col">Start Time</th>
                                           <th role="columnheader" scope="col">EndTime</th>
                                           <th role="columnheader" scope="col">Ket qua</th>
                                       </thead>
                                       <tbody id="tbody_tbl1">
-                                          <td class="text-center"><span>1</span></td>
-                                          <td class="text-center">sdfsd</td>
-                                          <td class="text-center">asdfas</td>
-                                          <td class="text-center">sadfa</td>
-                                          <td class="text-center"><a href="">sdgsdgsdf</a></td>
+                                          
                                       </tbody>
                                       
                                   </table>
@@ -162,5 +228,6 @@
     
             </div>
         </div>
+    </div>
 </body>
 </html>
