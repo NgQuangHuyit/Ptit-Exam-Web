@@ -6,7 +6,7 @@ function renderUserRow(data, parentId) {
         <td>${data.username}</td>
         <td>${data.fullname ? data.fullname : ''}</td>
         <td>${data.classId ? data.classId : ''}</td>
-        <td style="color:${data.isActive ? "green" : "red"}">${data.isActive ? true : false}</td>
+        <td style="color:${data.isActive ? "green" : "red"}">${(!!data.isActive)}</td>
         <td>${data.gender ? data.gender : ''}</td>
         <td><button class="btn btn-outline-info" onclick="getUserDetailPage(${data.id})">Detail</button>
         <button class="btn btn-outline-danger" class="bg-red" onclick="deleteUser(${data.id},handlerDeleteExamResponse)">xoa</button>
@@ -14,6 +14,7 @@ function renderUserRow(data, parentId) {
     document.getElementById(parentId).appendChild(row);
 }
 function renderAllUsers(data) {
+    console.log(data);
     document.getElementById('tbody1').innerHTML = '';
     data.forEach(user => {
         renderUserRow(user, 'tbody1');
@@ -37,4 +38,15 @@ function handlerDeleteExamResponse(result, examId) {
 document.addEventListener("DOMContentLoaded", function() {
 
     getAllUser(renderAllUsers);
+    
+    document.getElementById("search-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        console.log("search");
+        const name = document.getElementById("search-input").value;
+        if (name === "") {
+            getAllUser(renderAllUsers);
+            return;
+        }
+        searchUser(name, renderAllUsers);
+    })
 })

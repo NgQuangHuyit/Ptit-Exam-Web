@@ -85,3 +85,39 @@ function getUserInfoById(userId, callback) {
     .then((result) => callback(result))
     .catch((error) => console.error(error));
 }
+
+function updateUserInfo(userId, user, callback) {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Authorization",  `Bearer ${localStorage.getItem("token")}`);
+  const raw = JSON.stringify(user);
+  
+  const requestOptions = {
+    method: "PUT",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow"
+  };
+  console.log("user")
+  
+  fetch(`http://localhost:8080/users/${userId}`, requestOptions)
+    .then((response) => response.json())
+    .then((result) => callback(result))
+    .catch((error) => console.error(error));
+}
+
+function searchUser(name, callback) {
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${localStorage.getItem("token")}`);
+
+  const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+  };
+
+  fetch(`http://localhost:8080/users/search?searchValue=${name}`, requestOptions)
+  .then((response) => response.json())
+  .then((result) => callback(result))
+  .catch((error) => console.error(error));
+}
