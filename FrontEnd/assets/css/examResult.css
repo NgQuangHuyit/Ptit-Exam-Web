@@ -1,0 +1,48 @@
+
+h1 {
+margin-top:30px;
+text-align: center; /* Căn giữa nội dung của h1 */
+}
+
+.container {
+    width: 1200px;
+    margin-left: 10px;
+    margin-right: auto;
+    background-color: rgba(255, 255, 255, 0.59);
+    padding: 20px;
+    border:0 solid black;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.question-result {
+margin: 20px auto;
+padding: 15px;
+}
+
+.question-result p {
+padding: 3px;
+}
+
+.question-result--correct {
+border: green 2px solid;
+border-radius: 8px;
+background-color: #d4edda;
+}
+
+.question-result--incorrect {
+border: red 2px solid;
+border-radius: 8px;
+background-color: #faf0f1;
+}
+
+.correct-answer {
+font-weight: bold;
+color: green;
+}
+
+#exam-grade{
+color: green;
+}
+  
+  
