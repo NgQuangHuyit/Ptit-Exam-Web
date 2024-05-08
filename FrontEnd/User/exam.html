@@ -4,91 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../assets/css/exam.css">
+    <link rel="stylesheet" href="../assets/css/notice.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <script src="../assets/js/lib.js"></script>
+    <script src="../assets/js/examApi.js"></script>
     <script src="../assets/js/exam.js"></script>
     <title>Kiểm tra trắc nghiệm</title>
 </head>
 <body>
-    <header class="header">
-        <div class="header__title">
-            Các bài kiểm tra
+    <div class="navbar">
+        <div class="navbar__logo-container">
+          <img
+              src="https://code.ptit.edu.vn/2020/images/logo_ptit.png"
+              alt="logo_ptit"
+              width="30"
+          />
         </div>
-        <div class="header__avt">
-            <img src="https://code.ptit.edu.vn/2020/images/logo_ptit.png" alt="">
+        <a class="navbar__item" href="/DashboardAdmin/manageExam.html">Manage exam</a>
+        <a class="navbar__item" href="/DashboardAdmin/manageUser.html">Manage user</a>
+        <a class="navbar__item" href="/DashboardAdmin/index.html">Dashboard</a>
+        <div class="navbar__profile">
+          <img
+            class="navbar__profile__avatar"
+            src="https://code.ptit.edu.vn/2020/images/avt.png"
+            alt=""
+            onclick="toggleInfo()"
+            width="35"
+          />
+          <!-- information card -->
+          <div class="navbar__profile__card" id="adminCard">
+            
+          </div>
         </div>
-        <div class="header__logout">
-            <a href="../User/index.html"> 
-                <i class='bx bx-log-out'></i>
-            </a>
-        </div>
-    </header>
+    </div>
     <div class="wrapper">
         <div class="main-content">
-            <form action="" method="post" id="form-submit-generate">
-                <h1>Đề Kiểm Tra Trắc Nghiệm</h1>
-                <div class="select-content-ques">
-                    <h3>B1: Chọn môn và trạng thái</h3>
-                    <div class="select-boxs">
-                        <div class="select-wrapper">
-                            <select id="selectSubject" name="selectSubject">
-                                    <option value="all">Tất cả các môn</option>
-                                    <option value="mmt">Mạng máy tính</option>
-                                    <option value="vat-ly">Vật Lý</option>
-                                    <option value="dai-so">Đại số</option>
-                                    <option value="giai-tich">Giải tích</option>
-                                    <option value="lich-su-Dang">Lịch sử Đảng</option>
-                                    <option value="tieng-anh">Tiếng Anh</option>
-                            </select>
-                        </div>
-                        <div class="select-wrapper">
-                            <select id="selectStatus" name="selectStatus">
-                                    <option value="all">Tất cả trạng thái</option>
-                                    <option value="can-access">Có thể truy cập</option>
-                                    <option value="can-not-access">Không thể truy cập</option>
-                            </select>
-                        </div>
-                    </div>
+            <div class="search-container"> 
+                <div class="search"> 
+                    <div class="row"> 
+                        <div class="col-md-12"> 
+                            <div> 
+                                <form class="search-box" id="search-form" > 
+                                    <input type="" placeholder="Search value" id="search-input"> 
+                                    <button type="submit">Search</button> 
+                                </form> 
+                            </div> 
+                        </div> 
+                    </div> 
                 </div>
-                <div class="brLine"></div>
-                <div class="select-topic">
-                    <h3>B2: Loại đề</h3>
-                    <div class="topics">
-                        <div class="radio-control-box">
-                            <input type="radio" name="typeExam" id="radio-0">
-                            <label for="radio-0" class="custom-control-label">
-                                <span>
-                                    <b>Đề thi giữa kì, học kì</b>
-                                    <br>
-                                    45 câu / 60'
-                                </span>
-                            </label>
-                        </div>
-                        <div class="radio-control-box">
-                            <input type="radio" name="typeExam" id="radio-1">
-                            <label for="radio-1" class="custom-control-label">
-                                <span>
-                                    <b>Đề kiểm tra 1 tiết</b>
-                                    <br>
-                                    30 câu / 40'
-                                </span>
-                            </label>
-                        </div>
-                        <div class="radio-control-box">
-                            <input type="radio" name="typeExam" id="radio-2">
-                            <label for="radio-2" class="custom-control-label">
-                                <span>
-                                    <b>Đề kiểm tra 15 phút</b>
-                                    <br>
-                                    10 câu / 15'
-                                </span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="brLine"></div>
+            </div>
+            <form class="filter-box mt-3" id="filter-form">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                      <label>Môn thi</label>
+                      <select id="filter-subject" name="subject" class="form-control exam-form-field" required>
+                          <option disabled selected value="">Select</option>
+                          <option value="Toán rời rạc">Toán rời rạc</option>
+                          <option value="Lập trình web">Lập trình web</option>
+                          <option value="Cơ sở dữ liêu">Cơ sở dữ liêu</option>
+                          <option value="Mạng máy tính">Mạng máy tính</option>
+                          <option value="">All</option>
+                      </select>
+                  </div>
+              </div>
+                  <div class="col-md-5">
+                      <div class="form-group">
+                          <label>Active</label>
+                          <select id="filter-status" name="active" class="form-control exam-form-field" required>
+                              <option disabled selected value="">Select</option>
+                              <option value="true">Yes</option>
+                              <option value="false">No</option>
+                              <option value="">All</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-md-1" style="display: flex; align-items: center;">
+                    <button type="submit">Lọc</button>
+              </div>
+              </div>
             </form>
-            <div class="skills-test-list" id="exam-list">
-                
+            <div class="exam-list" id="exam-list">
+                <!-- <div class="exam-box">
+                    <h2 class="title">Đề thi giữa kì môn lịch sử Đảng</h2>
+                    <div class="view-detail">
+                        <div class="monhoc">Lịch sử Đảng</div>
+                        <div class="active">Có thể truy cập</div>
+                        <div class="time">120p</div>
+                    </div>
+                    <button class="btn btn-primary" style="background-color: red;">Bắt đầu thi</button>
+                </div> -->
             </div>
         </div>
     </div>

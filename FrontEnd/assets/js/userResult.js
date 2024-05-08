@@ -25,6 +25,13 @@ function renderExam(data){
         return row;
 }
 
+<<<<<<< HEAD
+function startPage(examId) {
+    
+}
+
+=======
+>>>>>>> 22d0bae4fdd7aaae9f49e13805a93c718162b626
 function renderExams(data) {
     document.getElementById('tbody_tbl1').innerHTML = '';
     data.forEach(exam => {

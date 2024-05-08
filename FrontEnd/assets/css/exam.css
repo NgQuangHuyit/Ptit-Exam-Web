@@ -1,58 +1,6 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #fff;
-    color: #333;
-    margin: 0px;
-}
-
-.header {
-    height: 48px;
-    width: 100%;
-    background-color: #ba2623; /* Màu đỏ */
-    color: white;
-    display: flex;
-    align-items: center;
-}
-
-.header__title {
-    font-size: 1.4rem;
-    font-weight: 400;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.header__title .menu-option {
-    display: none;
-}
-
-.header__avt img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #fff;
-}
-
-.header__logout {
-    margin-left: auto;
-    margin-right: 60px;
-}
-
-.header__logout a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.4rem;
-}
-
-
 .wrapper {
     max-width: 1200px;
-    margin: 20px auto;
+    margin-top: 50px;
     padding: 0 20px;
 }
 
@@ -162,25 +110,25 @@ input[type="radio"]:checked + label {
 }
 
 
-.skills-test-list {
+.exam-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 20px;
 }
 
-.skills-test-list h2 {
+.exam-list h2 {
     margin: 10px;
     margin-left: 0px;
 }
 
-.mid-term-test, .ffminutes-test, .ftminutes-test {
+.exam-box {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.mid-term-test h2, .ffminutes-test h2, .ftminutes-test h2 {
+.exam-box h2 {
     font-size: 20px;
     margin-bottom: 10px;
 }
@@ -189,10 +137,11 @@ input[type="radio"]:checked + label {
     margin-bottom: 10px;
 }
 
-.can-access {
+.monhoc {
+    color: blue;
+}
+
+.active {
     color: green;
 }
 
-.can-not-access {
-    color: red;
-}
