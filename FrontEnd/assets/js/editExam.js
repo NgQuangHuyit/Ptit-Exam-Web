@@ -278,4 +278,57 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("question-list").appendChild(renderQuestion(item));
         })
     });
+
+    document.getElementById("data-file").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var file = document.getElementById("file-input").files[0];
+        if (!file) {
+            showErrorNotice("Chưa chọn file");
+            return;
+        }
+        console.log(file);
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const data = e.target.result;
+
+            const lines = data.split("\n");
+            questions = [];
+            lines.forEach(line => {
+                const fields = line.split(",");
+                console.log(fields.length);
+                if (fields.length < 6) {
+                    return;
+                }
+                const question = {
+                    "content": fields[0],
+                    "choiceA": fields[1],
+                    "choiceB": fields[2],
+                    "choiceC": fields[3],
+                    "choiceD": fields[4],
+                    "rightChoice": fields[5]
+                }
+                questions.push(question);
+                console.log(question);
+            })
+
+            async function createQuestions() {
+                for (var i = 0; i < questions.length; i++) {
+                    await new Promise(resolve => {
+                        createQuestion(questions[i], editExamId, function(result) {
+                            if (result.success) {
+                                showSuccessNotice("Thêm câu hỏi thành công");
+                                document.getElementById("question-list").appendChild(renderQuestion(result.data));
+                            }
+                            else {
+                                showErrorNotice("Thêm câu hỏi thất bại");
+                            }
+                            resolve();
+                        })
+                    })
+                }
+            }
+            createQuestions();
+        }
+        reader.readAsText(file);
+    })
 });

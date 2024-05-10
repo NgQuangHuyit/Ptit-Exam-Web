@@ -49,8 +49,6 @@ document.addEventListener("DOMContentLoaded", function(){
 //     }
 // }
 
-var questions = [];
-
 // function renderQuestions() {
 //     var questionList = document.getElementById("questionList");
 //     var questionCount = document.getElementById("questionCount");
