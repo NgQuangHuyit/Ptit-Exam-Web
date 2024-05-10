@@ -30,3 +30,20 @@ function getResultById(resultId, callback) {
     .then((result) => callback(result))
     .catch((error) => console.error(error));
 }
+
+
+function getAllResultByExam(examId, callback) {
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${localStorage.getItem("token")}`);
+
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow"
+  };
+
+  fetch(`http://localhost:8080/exams/${examId}/results`, requestOptions)
+    .then((response) => response.json())
+    .then((result) => callback(result))
+    .catch((error) => console.error(error));
+}

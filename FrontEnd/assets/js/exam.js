@@ -42,6 +42,8 @@ document.addEventListener("DOMContentLoaded", function() {
         const subject = document.getElementById("filter-subject").value;
         filterExam(status, subject, renderAllExams);
     })
+    document.getElementById("myinfo-link").setAttribute("href", `/DashboardAdmin/UserInfo/index.html?id=${localStorage.getItem("userId")}`)
+    
 });
 
 

@@ -1,3 +1,4 @@
+
 function renderUserRow(data, parentId) {
     var row = document.createElement('tr');
     row.id = `tbl1_row_${data.id}`;
@@ -22,7 +23,7 @@ function renderAllUsers(data) {
 }
 
 function getUserDetailPage(userId) {
-    window.location.href = `/DashboardAdmin/UserInfo/index.html?userId=${userId}`;
+    window.location.href = `/DashboardAdmin/UserInfo/index.html?id=${userId}`;
 }
 
 function handlerDeleteExamResponse(result, examId) {

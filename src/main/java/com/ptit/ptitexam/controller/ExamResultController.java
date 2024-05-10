@@ -4,6 +4,7 @@ import com.ptit.ptitexam.payload.ExamResultDto;
 import com.ptit.ptitexam.payload.response.ApiResponse;
 import com.ptit.ptitexam.service.ExamResultService;
 import com.ptit.ptitexam.service.UserServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-
+@Slf4j
 @RestController
 public class ExamResultController {
     @Autowired
@@ -20,7 +21,7 @@ public class ExamResultController {
     @Autowired
     private UserServiceImpl userService;
 
-    @PostAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/users/{userId}/results")
     public ResponseEntity<?> getAllExamResultByUserId(@PathVariable Long userId) {
         return ResponseEntity.ok(examResultService.getAllByUser(userId));

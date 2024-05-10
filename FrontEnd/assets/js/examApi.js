@@ -102,3 +102,19 @@ function filterExam(status, subject, callback) {
     .then((result) => callback(result))
     .catch((error) => console.error(error));
 }
+
+function getStatistic(examId, callback) {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${localStorage.getItem("token")}`);
+
+    const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow"
+    };
+
+    fetch(`http://localhost:8080/exams/${examId}/statistics`, requestOptions)
+    .then((response) => response.json())
+    .then((result) => callback(result))
+    .catch((error) => console.error(error));
+}

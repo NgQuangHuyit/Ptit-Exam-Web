@@ -1,8 +1,7 @@
 function handlerSubmitExamResponse(response) {
     if (response.success) {
         showSuccessNotice(`Tạo thành công đề thi ${response.data.title}`);
-        sessionStorage.setItem("editExamId", response.data.id);
-        window.location.href = "/DashboardAdmin/editExam.html";
+        window.location.href = "editExam.html?id=" + response.data.id;
     }
     else
     {

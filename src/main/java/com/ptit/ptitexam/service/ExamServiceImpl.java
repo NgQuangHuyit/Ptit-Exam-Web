@@ -1,6 +1,7 @@
 package com.ptit.ptitexam.service;
 
 import com.ptit.ptitexam.entity.Exam;
+import com.ptit.ptitexam.entity.ExamResult;
 import com.ptit.ptitexam.exceptions.NotFoundException;
 import com.ptit.ptitexam.payload.ExamDto;
 import com.ptit.ptitexam.payload.ExamStatistic;
@@ -98,6 +99,12 @@ public class ExamServiceImpl implements IExamService{
     @Override
     public ExamStatistic getStatistic(Long id) {
         Exam exam = examRepository.findById(id).orElseThrow(() -> new NotFoundException("Exam", "id", id));
-        return exam.getStatistic();
+        System.out.println(exam.getTitle());
+        ExamStatistic examStatistic = new ExamStatistic(exam.getTitle());
+        for (ExamResult examResult: exam.getExamResults()) {
+            examStatistic.addPoint(examResult.getPoint());
+        }
+        examStatistic.calculate();
+        return examStatistic;
     }
 }

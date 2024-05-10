@@ -20,18 +20,11 @@ function renderExam(data){
             <td class="text-center">${data.examTitle}</td>
             <td class="text-center">${parseDatetime(data.startTime)}</td>
             <td class="text-center">${parseDatetime(data.startTime)}</td>
-            <td class="text-center"><a href="/Result/index.html?id=${data.id}">${data.point}</a></td>
+            <td class="text-center"><a href="/DashboardAdmin/Result/index.html?id=${data.id}">${data.point}</a></td>
         `
         return row;
 }
 
-<<<<<<< HEAD
-function startPage(examId) {
-    
-}
-
-=======
->>>>>>> 22d0bae4fdd7aaae9f49e13805a93c718162b626
 function renderExams(data) {
     document.getElementById('tbody_tbl1').innerHTML = '';
     data.forEach(exam => {
@@ -42,7 +35,8 @@ function renderExams(data) {
 
 document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('userId');
+    const userId = urlParams.get('id');
+    console.log(userId);
     getUserInfoById(userId, renderUserInfo);
 
     getAllResultsByUserId(userId, renderExams)

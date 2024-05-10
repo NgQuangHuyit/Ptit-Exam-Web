@@ -1,3 +1,4 @@
+
 function handlerDeleteExam(result, examId) {
     if (result.success) {
         showSuccessNotice("Xóa thành công");
@@ -15,7 +16,7 @@ function renderExam(data) {
     <td>${data.timeAmt}</td>
     <td>${data.questionCount}</td>
     <td style="color:${data.isActive ? "green" : "red"}">${data.isActive ? true : false}</td>
-    <td><button class="btn btn-outline-info">Thống kê</button>
+    <td><button class="btn btn-outline-info" onclick="statisticPage(${data.id})">Thống kê</button>
         <button class="btn btn-outline-success" onclick="editExamPage(${data.id})">Sửa</button>
         <button class="btn btn-outline-danger" class="bg-red" onclick="deleteExam(${data.id}, handlerDeleteExam); ">Xóa</button>
     </td>

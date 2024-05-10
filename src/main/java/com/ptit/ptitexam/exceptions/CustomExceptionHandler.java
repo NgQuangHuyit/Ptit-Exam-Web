@@ -5,7 +5,6 @@ import com.ptit.ptitexam.payload.response.ApiResponse;
 import com.ptit.ptitexam.payload.response.ErrorResponse;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -40,5 +39,10 @@ public class CustomExceptionHandler {
     @ResponseStatus(HttpStatus.CONFLICT)
     public ApiResponse<ErrorResponse> handleCommonException(RuntimeException e) {
         return new ApiResponse<>("Failed", false, new ErrorResponse(HttpStatus.CONFLICT, e.getMessage()));
+    }
+
+    @ExceptionHandler({CustomForbiddenException.class})
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public void handleCustomForbiddenExeption(CustomForbiddenException e) {
     }
 }

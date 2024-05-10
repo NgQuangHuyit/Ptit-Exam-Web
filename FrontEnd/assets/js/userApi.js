@@ -80,6 +80,7 @@ function getUserInfoById(userId, callback) {
     headers: myHeaders,
     redirect: "follow"
   };
+  console.log(userId);
   fetch(`http://localhost:8080/users/${userId}`, requestOptions)
     .then((response) => response.json())
     .then((result) => callback(result))
@@ -98,8 +99,6 @@ function updateUserInfo(userId, user, callback) {
     body: raw,
     redirect: "follow"
   };
-  console.log("user")
-  
   fetch(`http://localhost:8080/users/${userId}`, requestOptions)
     .then((response) => response.json())
     .then((result) => callback(result))
@@ -121,3 +120,5 @@ function searchUser(name, callback) {
   .then((result) => callback(result))
   .catch((error) => console.error(error));
 }
+
+

@@ -105,56 +105,7 @@ input {
   border: none;
 }
 
-.btn {
-    color: #fff;
-    display: inline-block;
-    text-decoration: none;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    padding: 12px 48px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: opacity 0.3s;
-    min-width: 100px;
-}
 
-.btn:hover {
-    opacity: 0.7;
-    color: white;
-}
-.btn--success {
-    background-color: #28a745;
-}
-
-.btn--warn {
-    background-color: #ffc107;
-}
-
-.btn--danger {
-    color: #fff;
-    background-color: #dc3545;
-
-    cursor: pointer;
-}
-.btn + .btn {
-    margin-left: 10px;
-}
-
-.btn--disabled {
-    opacity: 0.5 !important;
-    cursor: default;
-    background-color: gray;
-}
-
-.btn--size-s {
-    padding: 8px 8px;
-    text-align: center;
-}
-
-.btn--size-l {
-    padding: 16px 64px;
-}
 
 .col-sm-3 i{
   font-size: 24px;
@@ -191,3 +142,50 @@ tr {
     border-radius: 10px;
     outline: none;
   }
+
+  .search {
+    background-color: #fff;
+    padding: 4px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+
+::placeholder {
+    color: #999393;
+    opacity: 1
+}
+
+.search-box {
+    position: relative;
+    width: 100%
+}
+
+.search-box input {
+    height: 45px;
+    border: none;
+    width: 100%;
+    padding-left: 18px;
+    padding-right: 100px
+}
+
+
+.search-box i {
+    position: absolute;
+    top: 12px;
+    left: -10px;
+    font-size: 24px;
+    color: #eee
+}
+
+.search-box button{
+    position: absolute;
+    right: 1px;
+    top: 0px;
+    border: none;
+    height: 45px;
+    background-color: red;
+    color: #fff;
+    width: 90px;
+    border-radius: 4px
+}

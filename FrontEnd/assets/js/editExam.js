@@ -192,7 +192,8 @@ function handlerDeleteQuestion(result, questionId) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    var editExamId = sessionStorage.getItem("editExamId");
+    const urlParams = new URLSearchParams(window.location.search);
+    const editExamId = urlParams.get('id');
     document.getElementById("edit-exam-btn").addEventListener("click", function(event) {
         enableExamForm();
         this.setAttribute("disabled", true);

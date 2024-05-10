@@ -12,7 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.jwt.Jwt;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,9 +57,9 @@ public class UserController {
     }
 
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/users/{id}")
     public ResponseEntity<?> updateAccount(@PathVariable Long id, @RequestBody UpdateUserInfo updateUserInfo) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetailDto user = userService.updateUserInfo(id, updateUserInfo);
         return new ResponseEntity<>(new ApiResponse<>("User was updated successfully", true, user), HttpStatus.OK);
     }

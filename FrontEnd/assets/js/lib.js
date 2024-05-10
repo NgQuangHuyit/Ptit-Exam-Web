@@ -175,9 +175,13 @@ function logout () {
 }
 
 function editExamPage(id) {
-  sessionStorage.setItem("editExamId", id);
-  window.location.href = "editExam.html";
+  window.location.href = "Exam/editExam.html?id=" + id;
 }
+function statisticPage(id) {
+  window.location.href = `Exam/statistic.html?id=${id}`;
+}
+
+
 
 function parseDatetime(s) {
 

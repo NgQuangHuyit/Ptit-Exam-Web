@@ -3,6 +3,7 @@ package com.ptit.ptitexam.service;
 import com.ptit.ptitexam.entity.Role;
 import com.ptit.ptitexam.entity.User;
 import com.ptit.ptitexam.exceptions.CommonException;
+import com.ptit.ptitexam.exceptions.CustomForbiddenException;
 import com.ptit.ptitexam.exceptions.NotFoundException;
 import com.ptit.ptitexam.exceptions.UsernameOrEmailAlreadyExists;
 import com.ptit.ptitexam.payload.ExamResultSumary;
@@ -13,14 +14,18 @@ import com.ptit.ptitexam.repository.UserRepository;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -77,6 +82,11 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserDetailDto updateUserInfo(Long id, UpdateUserInfo updateUserInfo) {
         User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user", "id", id));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        Jwt jwt = (Jwt) authentication.getPrincipal();
+        Long asd = (Long) jwt.getClaims().get("userId");
+        if (!Objects.equals(asd, user.getId()) && !authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) throw new CustomForbiddenException("");
         user.setFullname(updateUserInfo.getFullname());
         user.setDob(updateUserInfo.getDob());
 //        if(updateUserInfo.getIsActive() != null) {

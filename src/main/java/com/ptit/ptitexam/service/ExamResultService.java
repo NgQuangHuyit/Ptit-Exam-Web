@@ -3,6 +3,7 @@ package com.ptit.ptitexam.service;
 import com.ptit.ptitexam.entity.Exam;
 import com.ptit.ptitexam.entity.ExamResult;
 import com.ptit.ptitexam.entity.User;
+import com.ptit.ptitexam.exceptions.CustomForbiddenException;
 import com.ptit.ptitexam.exceptions.NotFoundException;
 import com.ptit.ptitexam.exceptions.ResouceAlreadyExists;
 import com.ptit.ptitexam.payload.ExamResultDto;
@@ -13,8 +14,11 @@ import com.ptit.ptitexam.repository.UserRepository;
 import jakarta.ws.rs.ForbiddenException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -37,6 +41,13 @@ public class ExamResultService implements IExamResultService{
 
     @Override
     public List<ExamResultSumary> getAllByUser(Long userId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        Jwt jwt = (Jwt) authentication.getPrincipal();
+        Long asd = (Long) jwt.getClaims().get("userId");
+        System.out.println(asd);
+        System.out.println(userId);
+        if (!Objects.equals(asd, userId) && !authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) throw new CustomForbiddenException("");
         User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User", "id", userId));
         List<ExamResult> examResultList = examResultRepository.findAllByUser(user);
         return examResultList.stream().map((result) -> this.modelMapper.map(result, ExamResultSumary.class)).toList();
