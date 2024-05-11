@@ -31,6 +31,8 @@ function handleResultResponse(data) {
     window.location.href = `testPage.html?examId=${data.data.examId}`;
 }
 
+
+
 function startResult(id) {
     createResult(id,handleResultResponse);
 }

@@ -70,3 +70,22 @@ function createResult(examId, callback) {
     .catch((error) => console.error(error));
   }
 
+
+  function submitResult(data,resultId, callback) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${localStorage.getItem("token")}`);
+    const raw = JSON.stringify(data);
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+
+    fetch(`http://localhost:8080/results/submissions?resultId=${resultId}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => callback(result))
+      .catch((error) => console.error(error));
+  }
