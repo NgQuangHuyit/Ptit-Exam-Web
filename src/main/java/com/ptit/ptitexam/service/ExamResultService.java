@@ -1,5 +1,6 @@
 package com.ptit.ptitexam.service;
 
+import com.ptit.ptitexam.entity.Answer;
 import com.ptit.ptitexam.entity.Exam;
 import com.ptit.ptitexam.entity.ExamResult;
 import com.ptit.ptitexam.entity.User;
@@ -8,6 +9,8 @@ import com.ptit.ptitexam.exceptions.NotFoundException;
 import com.ptit.ptitexam.exceptions.ResouceAlreadyExists;
 import com.ptit.ptitexam.payload.ExamResultDto;
 import com.ptit.ptitexam.payload.ExamResultSumary;
+import com.ptit.ptitexam.payload.request.SelectAnswerRequest;
+import com.ptit.ptitexam.payload.request.SubmitRequest;
 import com.ptit.ptitexam.repository.ExamRepository;
 import com.ptit.ptitexam.repository.ExamResultRepository;
 import com.ptit.ptitexam.repository.UserRepository;
@@ -35,6 +38,9 @@ public class ExamResultService implements IExamResultService{
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AnswerServiceImpl answerService;
 
     @Autowired
     ModelMapper modelMapper;
@@ -83,7 +89,7 @@ public class ExamResultService implements IExamResultService{
     }
 
     @Override
-    public ExamResultDto submitResult(Long examResultId) {
+    public ExamResultDto submitResult(Long examResultId, SubmitRequest submitRequest) {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         String name = securityContext.getAuthentication().getName();
         User user = userRepository.findByUsername(name);
@@ -95,9 +101,16 @@ public class ExamResultService implements IExamResultService{
         }
         if (result.getEndTime() != null)
             throw new ResouceAlreadyExists("ExamResult was already submitted! Cannot submit result");
+
+
+        List<SelectAnswerRequest> answers = submitRequest.getAnswers();
+        for (SelectAnswerRequest answer : answers) {
+            answerService.createSelectedAnswer(answer, examResultId);
+        }
+        ExamResult res = examResultRepository.findById(examResultId).orElseThrow(() -> new NotFoundException("ExamResult", "id", examResultId));
+        res.updatePoint();
+        examResultRepository.save(res);
         result.setEndTime(new Timestamp(System.currentTimeMillis()));
-        result.updatePoint();
-        examResultRepository.save(result);
         return this.modelMapper.map(examResultRepository.save(result), ExamResultDto.class);
     }
 

@@ -48,4 +48,8 @@ public class ExamResult {
         }
         this.point = (float) correctAnswersCnt / (float) totalQuestions * 10f;
     }
+
+    public void addAnswer(Answer answer) {
+        answers.add(answer);
+    }
 }

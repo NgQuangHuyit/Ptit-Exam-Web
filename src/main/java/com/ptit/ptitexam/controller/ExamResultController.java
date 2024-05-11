@@ -1,6 +1,7 @@
 package com.ptit.ptitexam.controller;
 
 import com.ptit.ptitexam.payload.ExamResultDto;
+import com.ptit.ptitexam.payload.request.SubmitRequest;
 import com.ptit.ptitexam.payload.response.ApiResponse;
 import com.ptit.ptitexam.service.ExamResultService;
 import com.ptit.ptitexam.service.UserServiceImpl;
@@ -51,8 +52,8 @@ public class ExamResultController {
     }
 
     @PostMapping("/results/submissions")
-    public ResponseEntity<?> submitResult(@RequestParam Long resultId) {
-        ExamResultDto data = examResultService.submitResult(resultId);
+    public ResponseEntity<?> submitResult(@RequestParam Long resultId, @RequestBody SubmitRequest submitRequest) {
+        ExamResultDto data = examResultService.submitResult(resultId, submitRequest);
         return ResponseEntity.ok(new ApiResponse<>("Success", true, data));
     }
 

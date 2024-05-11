@@ -15,12 +15,19 @@ function renderUserInfo(data) {
 
 function renderExam(data){
     var row = document.createElement('tr');
+        result_link = ""
+        if (localStorage.getItem('username') == 'admin') {
+            result_link = `/DashboardAdmin/Result/index.html?id=${data.id}`
+        }
+        else {
+            result_link = `/User/MyResult/index.html?id=${data.id}`
+        }
         row.innerHTML = `
             <td class="text-center"><span>${data.id}</span></td>
             <td class="text-center">${data.examTitle}</td>
             <td class="text-center">${parseDatetime(data.startTime)}</td>
             <td class="text-center">${parseDatetime(data.startTime)}</td>
-            <td class="text-center"><a href="/DashboardAdmin/Result/index.html?id=${data.id}">${data.point}</a></td>
+            <td class="text-center"><a href="${result_link}">${data.point}</a></td>
         `
         return row;
 }

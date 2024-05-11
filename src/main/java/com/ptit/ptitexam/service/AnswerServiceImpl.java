@@ -53,6 +53,7 @@ public class AnswerServiceImpl implements IAnswerService {
         if (!Objects.equals(result.getUser().getId(), user.getId())) {
             throw new HTTPException(403);
         }
+        System.out.println(result.getEndTime());
         if (result.getEndTime() != null)
             throw new ResouceAlreadyExists("ExamResult was already submitted! Cannot submit result");
         if (answerRepository.existsByQuestionAndExamResult(question, result))
