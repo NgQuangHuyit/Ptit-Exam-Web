@@ -28,7 +28,7 @@ function handleResultResponse(data) {
         showErrorNotice("Không thể làm bài thi!");
         return;
     }
-    window.location.href = `testPage.html?examId=${data.data.examId}`;
+    window.location.href = `testPage.html?examId=${data.data.examId}?resultId=${data.data.resultId}`;
 }
 
 function startResult(id) {
