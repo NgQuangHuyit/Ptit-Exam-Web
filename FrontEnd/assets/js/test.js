@@ -3,6 +3,7 @@ let examData = [];
 
 function handleQuestionData(data) {
     examData = data;
+    console.log(examData);
     examData = examData.map(question => {
         return {
             id: question.id,
@@ -13,50 +14,50 @@ function handleQuestionData(data) {
             choiceD: question.choiceD,
         };
     });
-    console.log(examData);
     displayAllQuestions(); // Sau khi nhận dữ liệu, hiển thị câu hỏi
 }
 
 function displayAllQuestions() {
     let navbarContent = '<table>'; // Nội dung cho navbar bên phải
-    let questionsHTML = ''; // Nội dung cho tất cả câu hỏi
+        let questionsHTML = ''; // Nội dung cho tất cả câu hỏi
 
-    examData.forEach((question) => {
-        if ((question.id-1) % 5 === 0) { // Mỗi hàng mới
-            navbarContent += '<tr>';
-        }
-        // Thêm mục vào navbar bên phải
-        navbarContent += `
-            <td class = "navbar-item">
-                <a href="#question-${question.id}">${question.id}</a>
-            </td>
-        `;
+        examData.forEach((question, index) => {
+            if (index % 5 === 0) { // Mỗi hàng mới
+                navbarContent += '<tr>';
+            }
+    
+            // Thêm mục vào navbar bên phải
+            navbarContent += `
+                <td class="navbar-item">
+                    <a href="#question-${question.id}">${index + 1}</a>
+                </td>
+            `;
+    
+            if (index % 5 === 4 || index === examData.length - 1) { // Kết thúc hàng hoặc cuối danh sách
+                navbarContent += '</tr>';
+            }
+            // Thêm câu hỏi vào container
+            questionsHTML += `
+                <div id="question-${question.id}" class="question">
+                    <p><strong >Câu hỏi ${index + 1}:</strong> ${question.content}</p>
+                    <ul>
+                        <li><input type="radio" name="choice-${question.id}" value="A">${question.choiceA}</li>
+                        <li><input type="radio" name="choice-${question.id}" value="B">${question.choiceB}</li>
+                        <li><input type="radio" name="choice-${question.id}" value="C">${question.choiceC}</li>
+                        <li><input type="radio" name="choice-${question.id}" value="D">${question.choiceD}</li>
+                    </ul>
+                </div>
+            `;
+        });
+        navbarContent += '</table>';
 
-        if ((question.id-1)  % 5 === 4 || (question.id-1) === examData.length - 1) { // Kết thúc hàng hoặc cuối danh sách
-            navbarContent += '</tr>';
-        }
-        // Thêm câu hỏi vào container
-        questionsHTML += `
-        <div id="question-${question.id}" class="question">
-            <p><strong>Câu hỏi ${question.id}:</strong> ${question.content}</p>
-            <ul>
-                <li><input type="radio" name="choice-${question.id}" value="0">${question.choiceA}</li>
-                <li><input type="radio" name="choice-${question.id}" value="1">${question.choiceB}</li>
-                <li><input type="radio" name="choice-${question.id}" value="2">${question.choiceC}</li>
-                <li><input type="radio" name="choice-${question.id}" value="3">${question.choiceD}</li>
-            </ul>
-        </div>
-        `;
-    });
-    navbarContent += '</table>';
+       
+        const navbar = document.querySelector('.navbar');
+        navbar.innerHTML = navbarContent;
 
-   
-    const navbar = document.querySelector('.navbar');
-    navbar.innerHTML = navbarContent;
-
-    // Gán nội dung của câu hỏi
-    const questionContainer = document.querySelector('.question-container');
-    questionContainer.innerHTML = questionsHTML;
+        // Gán nội dung của câu hỏi
+        const questionContainer = document.querySelector('.question-container');
+        questionContainer.innerHTML = questionsHTML;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -72,9 +73,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.getElementById('navbar'); // Navbar bên phải
     const urlParams = new URLSearchParams(window.location.search);
     const examId = urlParams.get('examId');
+    const resultId = urlParams.get('resultId');
     // Giả định dữ liệu bài thi
-
-        
+    console.log(examId);
+    console.log(resultId);
+ 
     getQuestionByExamId(examId, handleQuestionData);
 
     // Hiển thị tất cả câu hỏi
@@ -130,9 +133,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('navbar-i').remove();
         // Tính điểm số và hiển thị kết quả
         displayResult();
-    }
 
-    
+    }
 
     // Hàm kiểm tra xem tất cả các câu hỏi đã được trả lời chưa
     function checkAllQuestionsAnswered() {
@@ -167,57 +169,36 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
+let resultData = {
+    examId: examId,
+    answers: [
+    ]
+};
     // Hiển thị kết quả
-    function displayResult() {
-        let correctAnswers = 0;
-    
-        
-        // Tạo biến để lưu thông tin kết quả
-    let resultHTML = '';
-
+function displayResult() {
     // Kiểm tra các câu trả lời và tính số câu trả lời đúng
     examData.forEach((question, index) => {
-        const selectedChoiceIndex = document.querySelector(`input[name="choice-${index}"]:checked`);
-        const userAnswerIndex = selectedChoiceIndex ? selectedChoiceIndex.value : -1; // Nếu không có câu trả lời, gán giá trị -1
-        const correctAnswerIndex = question.correctAnswer;
-        const isCorrect = userAnswerIndex == correctAnswerIndex;
-        var modifier = isCorrect ? "--correct" : "--incorrect";
-        // Cập nhật số câu trả lời đúng
-        if (isCorrect) {
-            correctAnswers++;
-        }
-
-        // Tạo HTML cho mỗi câu hỏi và đáp án
-        resultHTML += `
-            <div class="question-result question-result${modifier}">
-                <p class="question-text"><strong>Câu hỏi ${index + 1}:</strong> ${question.question}</p>
-                <p class="user-answer"><strong>Đáp án của bạn:</strong> ${userAnswerIndex != -1 ? question.choices[userAnswerIndex] : "Không có"}</p>
-                <p class="correct-answer"><strong>Đáp án đúng:</strong> ${question.choices[correctAnswerIndex]}</p>
-            </div>
-        `;
+        const selectedChoiceIndex = document.querySelector(`input[name="choice-${question.id}"]:checked`);
+        const selectedChoiceValue = selectedChoiceIndex.value;
+        let tmp =
+            {
+                question_id: question.id,
+                selected_choice: selectedChoiceValue,             
+            }
+        resultData.answers.push(tmp);
     });
 
-    // Hiển thị số câu trả lời đúng và tổng số câu
-    correctAnswersSpan.textContent = correctAnswers;
-    totalQuestionsSpan.textContent = examData.length;
-
-    // Tính điểm số
-    const examGrade = (correctAnswers / examData.length) * 10;
-
-    // Hiển thị điểm số
-    examGradeSpan.textContent = examGrade.toFixed(2); // Làm tròn đến 2 chữ số thập phân
-
-    // Hiển thị thông tin kết quả
-    answersContainer.innerHTML = resultHTML;
-    console.log(resultHTML)
-
-    }
-    
-
+    console.log(JSON.stringify(resultData));
+    submitResult(resultData, resultId, function(result) {
+        if(result.success) {
+            console.log(result);
+            window.location.href = `/User/MyResult/index.html?id=${result.data.id}`;
+        } else {
+            console.error();
+        }
+    })
+}
     // Thực hiện khi nộp bài
-    
-
     // Hiển thị tất cả câu hỏi và bắt đầu đếm ngược thời gian khi trang được tải
     displayAllQuestions();
     startTimer();
