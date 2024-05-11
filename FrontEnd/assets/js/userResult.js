@@ -35,7 +35,11 @@ function renderExams(data) {
 
 document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('id');
+    var tmpId = urlParams.get('id');
+    if (tmpId == null) {
+        tmpId = localStorage.getItem('userId');
+    }
+    const userId = tmpId;
     console.log(userId);
     getUserInfoById(userId, renderUserInfo);
 
