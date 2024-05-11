@@ -47,3 +47,26 @@ function getAllResultByExam(examId, callback) {
     .then((result) => callback(result))
     .catch((error) => console.error(error));
 }
+
+
+
+function createResult(examId, callback) {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Authorization", `Bearer ${localStorage.getItem("token")}`);
+
+  const raw = "";
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow"
+  };
+
+  fetch(`http://localhost:8080/results?examId=${examId}`, requestOptions)
+    .then((response) => response.json())
+    .then((result) => callback(result))
+    .catch((error) => console.error(error));
+  }
+

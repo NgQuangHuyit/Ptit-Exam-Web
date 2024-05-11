@@ -10,11 +10,10 @@ function renderExam(data) {
                 <div class="active">${data.isActive ? "có thể truy cập" : "không thể truy cập"}</div>
                 <div class="time">${data.timeAmt}p</div>    
             </div>
-        <button class="btn btn-primary ${data.isActive ? "disable" : ""} style="background-color: red;">Bắt đầu thi</button>
+        <button class="btn btn-primary ${data.isActive ? "disable" : ""} style="background-color: red;" onclick="startResult(${data.id})">Bắt đầu thi</button>
                 `
     return ele
 }
-
 
 //lấy nhiều bài thi
 function renderAllExams(data) {
@@ -24,10 +23,19 @@ function renderAllExams(data) {
     });
 }
 
+function handleResultResponse(data) {
+    if(!data.success) {
+        showErrorNotice("Không thể làm bài thi!");
+        return;
+    }
+    window.location.href = `testPage.html?examId=${data.data.examId}`;
+}
+
+function startResult(id) {
+    createResult(id,handleResultResponse);
+}
 
 document.addEventListener("DOMContentLoaded", function() {
-    getAllExams(renderAllExams)
-
     getAllExams(renderAllExams);
 
     document.getElementById("search-form").addEventListener("submit", function(event) {
