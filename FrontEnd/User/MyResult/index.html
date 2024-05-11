@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/notice.css">
+    <link rel="stylesheet" href="/assets/css/navbar.css">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome-free-6.5.1-web/css/all.min.css">
+    <script src="/assets/js/lib.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="/assets/js/resultApi.js"></script>
+    <script src="/assets/js/examResult.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/examResult.css">
+    <script>
+    </script>
+</head>
+<body>
+    <div id="notice"></div>
+    <div class="navbar">
+        <div class="navbar__logo-container">
+          <img
+              src="https://code.ptit.edu.vn/2020/images/logo_ptit.png"
+              alt="logo_ptit"
+              width="30"
+          />
+        </div>
+        <a class="navbar__item" href="/User">Home Page</a>
+        <div class="navbar__profile">
+          <img
+            class="navbar__profile__avatar"
+            src="https://code.ptit.edu.vn/2020/images/avt.png"
+            alt=""
+            onclick="toggleInfo()"
+            width="35"
+          />
+          <!-- information card -->
+          <div class="navbar__profile__card" id="adminCard">
+            
+          </div>
+        </div>
+    </div>
+    <h1 style="text-align: center;">Kết quả bài thi</h1>
+
+    <div class="container" style="margin: 30px auto;"> 
+        <div style="padding: 10px 40px;;" >
+            <h2 style="text-align: center;">Thông tin thí sinh</h2>
+            <p style="margin-top: 15px;">Họ tên: <strong id="name"></strong></p>
+            <p >Username: <strong id="username"></strong></p>
+            <p>ID: <strong id="userId">#</strong></p>
+        </div>
+    </div>
+    <div class="container" style="margin: 30px auto; padding: 10px 40px;" >
+        <div id="result-page" class="page">
+            <div style="padding: 10px">
+                <h2 style="text-align: center;">Kết Quả</h2>
+                <p>Đề thi: <strong id="exam-title"></strong> </p>
+                <p>Thời gian bắt đầu: <strong id="start-time"></strong></p>
+                <p>Thời gian kết thúc: <strong id="end-time"></strong></p>
+                <p>Điểm số: <strong id="point" style="color: red;"></strong></p>
+            </div>
+            <div id="answers-container" class="answers-container">
+            
+                <div class="question-result question-result--correct">
+                    <p class="question-text"><strong>Câu hỏi 16:</strong> Câu hỏi 16: Khẳng định nào sau đây là đúng khi nói về mạng chuyển mạch kênh:</p>
+                    <p class="ml-4"> A. dfasdfasdf</p>
+                    <p class="ml-4"> B. dfasdfasdf</p>
+                    <p class="ml-4"> C. dfasdfasdf</p>
+                    <p class="ml-4"> D. dfasdfasdf</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Thiết lập liên kết vật lý, truyền dữ liệu và giải phóng liên kết giữa 2 thực thể</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> A. Thiết lập liên kết vật lý, truyền dữ liệu và giải phóng liên kết giữa 2 thực thể</p>
+                </div>
+        
+            
+                <div class="question-result question-result--incorrect">
+                    <p class="question-text"><strong>Câu hỏi 20:</strong> Câu hỏi 20: Khẳng định nào sau đây là đúng nói về cấu trúc vật lý của mạng:</p>
+                    <p class="user-answer"><strong>Đáp án của bạn:</strong> A. Giao thức mạng (Protocol)</p>
+                    <p class="correct-answer"><strong>Đáp án đúng:</strong> B. Hình trạng mạng (Topology )</p>
+                </div>
+            </div> <!-- Container cho câu trả lời và đáp án -->
+        </div>
+    </div>
+</body>
+</html>

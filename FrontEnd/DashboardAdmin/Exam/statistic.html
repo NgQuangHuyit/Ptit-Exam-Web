@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo/Chỉnh sửa bài thi</title>
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/examForm.css">
+    <link rel="stylesheet" href="../../assets/css/navbar.css">
+    <link rel="stylesheet" href="../../assets/fonts/fontawesome-free-6.5.1-web/css/all.min.css"><link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/notice.css">
+    <link rel="stylesheet" href="../../assets/css/examStatistic.css">
+    <script src="../../assets/js/lib.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="../../assets/js/resultApi.js"></script>
+    <script src="../../assets/js/examApi.js"></script>
+    <script src="../../assets/js/statistic.js"></script>
+</head>
+<body>
+
+    <div id="notice"></div>
+    <div class="navbar">
+        <div class="navbar__logo-container">
+          <img
+              src="https://code.ptit.edu.vn/2020/images/logo_ptit.png"
+              alt="logo_ptit"
+              width="30"
+          />
+        </div>
+        <a class="navbar__item" href="/DashboardAdmin/manageExam.html">Manage exam</a>
+        <a class="navbar__item" href="/DashboardAdmin/manageUser.html">Manage user</a>
+        <a class="navbar__item" href="/DashboardAdmin/index.html">Dashboard</a>
+        <div class="navbar__profile">
+          <img
+            class="navbar__profile__avatar"
+            src="https://code.ptit.edu.vn/2020/images/avt.png"
+            alt=""
+            onclick="toggleInfo()"
+            width="35"
+          />
+          <!-- information card -->
+          <div class="navbar__profile__card" id="adminCard">
+
+                
+          </div>
+        </div>
+      </div>
+
+      <div class="container" style="max-width: 1240px;">
+        <div class="main-body">
+            <div class="row gutters-sm mb-5">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-sm-12" style="padding: 0 15px;">
+                            <div class="card">
+                                <div class="card-body" style="width: 100%; height: 290px;">
+                                    <div class="text-center" style="font-size: 20px;">Tổng số lượt làm bài</div>
+                                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                                        <p id="count-result" class="text-center" style="margin: 0;font-family: 'Cerebri Sans', sans-serif;font-size: 70px;"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-sm-12" style="padding: 0 15px;">
+                            <div class="card">
+                                <div class="card-body" style="display: flex; flex-direction: column; align-items: center;">
+                                    <div class="text-center" style="font-size: 20px;">Điểm thấp nhất</div>
+                                    <div id="min-score" ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-sm-12" style="padding: 0 15px;">
+                            <div class="card">
+                                <div class="card-body" style="display: flex; flex-direction: column; align-items: center;">
+                                    <div class="text-center" style="font-size: 20px;">Điểm cao nhất</div>
+                                    <div id="max-score"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row gutters-sm mb-5">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-sm-12" style="padding: 0 15px;">
+                            <div class="card">
+                                <div class="card-header">
+                  
+                                  <!-- Title -->
+                                  <h4 class="card-header-title">
+                                    Phổ điểm
+                                  </h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="container">
+                                        <canvas id="score-spectrum-chart" style="width: 100%; height: 350px;"></canvas>
+                                    </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card">
+                    <div class="card-header">
+                      <h4 class="card-header-title">
+                        Điểm trung bình
+                      </h4>
+                    </div>
+                    <div class="card-body" style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="container">
+                            <div id="avg-score" style="width: 100%;height: 350px;">
+                                
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row gutters-sm">
+                <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-sm-12">
+                          <div class="card">
+                              <div class="card-body">
+                                  <h5 class="d-flex align-items-center mb-3">Lich su lam bai</h5>
+                                  <div class="search-container"> 
+                                  <div class="search"> 
+                                      <div class="row"> 
+                                          <div class="col-md-12"> 
+                                              <div> 
+                                                  <form class="search-box" id="search-form" > 
+                                                      <i class='bx bxs-map' ></i> 
+                                                      <input type="text" placeholder="Search value" id="search-input">
+                                                      <button type="submit">Search</button> 
+                                                  </form> 
+                                              </div> 
+                                          </div> 
+                                      </div> 
+                                  </div>
+                              </div>
+                                  <div class="tab__table">
+                                    <table style="width: 100%;">
+                                        <colgroup>
+                                            <col style="width: 100px;">
+                                            <col>
+                                            <col>
+                                            <col>
+                                            <col>
+                                            <col>
+                                            <col>
+                                        </colgroup>
+                                        <thead class="main__container__table__header">
+                                            <th role="columnheader" class="text-center">#</th>
+                                            <th role="columnheader" scope="col">Username</th>
+                                            <th role="columnheader" scope="col">Start Time</th>
+                                            <th role="columnheader" scope="col">EndTime</th>
+                                            <th role="columnheader" scope="col">Ket qua</th>
+                                        </thead>
+                                        <tbody id="tbody_tbl1">
+                                            
+                                        </tbody>
+                                        
+                                    </table>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+      
+      
+                  </div>
+                </div>
+              </div>
+        </div>
+
+    </div>
+    <div class="footer"> </div>
+</body>
+</html>
