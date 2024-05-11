@@ -14,7 +14,6 @@ function handleQuestionData(data) {
             choiceD: question.choiceD,
         };
     });
-    console.log(examData);
     displayAllQuestions(); // Sau khi nhận dữ liệu, hiển thị câu hỏi
 }
 
@@ -30,7 +29,7 @@ function displayAllQuestions() {
             // Thêm mục vào navbar bên phải
             navbarContent += `
                 <td class="navbar-item">
-                    <a href="#question-${index + 1}">${index + 1}</a>
+                    <a href="#question-${question.id}">${index + 1}</a>
                 </td>
             `;
     
@@ -40,7 +39,7 @@ function displayAllQuestions() {
             // Thêm câu hỏi vào container
             questionsHTML += `
                 <div id="question-${question.id}" class="question">
-                    <p><strong>Câu hỏi ${index + 1}:</strong> ${question.content}</p>
+                    <p><strong >Câu hỏi ${index + 1}:</strong> ${question.content}</p>
                     <ul>
                         <li><input type="radio" name="choice-${question.id}" value="A">${question.choiceA}</li>
                         <li><input type="radio" name="choice-${question.id}" value="B">${question.choiceB}</li>
@@ -74,7 +73,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.getElementById('navbar'); // Navbar bên phải
     const urlParams = new URLSearchParams(window.location.search);
     const examId = urlParams.get('examId');
+    const resultId = urlParams.get('resultId');
     // Giả định dữ liệu bài thi
+    console.log(examId);
+    console.log(resultId);
  
     getQuestionByExamId(examId, handleQuestionData);
 
@@ -190,7 +192,7 @@ function displayResult() {
     submitResult(resultData, resultId, function(result) {
         if(result.success) {
             console.log(result);
-            window.location.href = `testPage.html?examId=${data.data.examId}?resultId=${resultId}`;
+            window.location.href = `/User/MyResult/index.html?id=${result.data.id}`;
         } else {
             console.error();
         }
