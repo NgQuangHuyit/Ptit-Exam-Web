@@ -158,6 +158,7 @@ function checkTokenValid() {
             localStorage.removeItem("username");
             localStorage.removeItem("email");
             localStorage.removeItem("fullname");
+            localStorage.removeItem("userId")
             window.location.href = "/";
           }
         })
@@ -171,6 +172,7 @@ function logout () {
     localStorage.removeItem("username");
     localStorage.removeItem("email");
     localStorage.removeItem("fullname");
+    localStorage.removeItem("userId")
     window.location.href = "/";
 }
 
