@@ -1,4 +1,4 @@
-
+checkTokenValid()
 //lấy bài thi
 function renderExam(data) {
     var ele = document.createElement('div')
@@ -7,10 +7,10 @@ function renderExam(data) {
             <h2 class="title">${data.title}</h2>
             <div class="view-detail">
                 <div class="monhoc">${data.subject}</div>
-                <div class="active">${data.isActive ? "có thể truy cập" : "không thể truy cập"}</div>
+                <div class="active" style="color: ${data.isActive ? "green" : "red"};">${data.isActive ? "có thể truy cập" : "không thể truy cập"}</div>
                 <div class="time">${data.timeAmt}p</div>    
             </div>
-        <button class="btn btn-primary ${data.isActive ? "disable" : ""} style="background-color: red;" onclick="startResult(${data.id})">Bắt đầu thi</button>
+        <button class="btn btn-primary ${data.isActive ? "" : "disabled"} style="background-color: red;" onclick="startResult(${data.id})">Bắt đầu thi</button>
                 `
     return ele
 }

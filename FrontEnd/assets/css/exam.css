@@ -95,20 +95,6 @@ input[type="radio"]:checked + label {
 }
 
 
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #d9534f;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.btn:hover {
-    background-color: #c9302c;
-}
-
 
 .exam-list {
     display: grid;

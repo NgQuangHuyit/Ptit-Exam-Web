@@ -1,9 +1,31 @@
-
+checkTokenValid()
 let examData = [];
+let timeLimit = 2700;
+
+const urlParams = new URLSearchParams(window.location.search);
+const examId = urlParams.get('examId');
+const resultId = urlParams.get('resultId');
+
+getExamById(examId, function(data) {
+    timeLimit = data.timeAmt * 60;
+})
+
+getResultById(resultId, function(data) {
+    const startTime = new Date(data.startTime);
+    if (data.endTime !== null) {
+        window.location.href = `/User/MyResult/index.html?id=${data.id}`;
+    }
+    else {
+        timeLimit = (timeLimit - (new Date() - startTime) / 1000);
+        const remainingMinutes = Math.floor(timeLimit / 60);
+        const remainingSeconds = Math.floor(timeLimit % 60);
+        timeLimit = remainingMinutes * 60 + remainingSeconds;
+    }
+})
+
 
 function handleQuestionData(data) {
     examData = data;
-    console.log(examData);
     examData = examData.map(question => {
         return {
             id: question.id,
@@ -17,6 +39,14 @@ function handleQuestionData(data) {
     displayAllQuestions(); // Sau khi nhận dữ liệu, hiển thị câu hỏi
 }
 
+function changeNavbarItemStyle(questionId) {
+    const navbarItem = document.getElementById(`item-${questionId}`);
+    // Thay đổi CSS của td
+    navbarItem.style.backgroundColor = 'red';
+    navbarItem.querySelector('a').style.color = 'white';
+}
+
+
 function displayAllQuestions() {
     let navbarContent = '<table>'; // Nội dung cho navbar bên phải
         let questionsHTML = ''; // Nội dung cho tất cả câu hỏi
@@ -28,7 +58,7 @@ function displayAllQuestions() {
     
             // Thêm mục vào navbar bên phải
             navbarContent += `
-                <td class="navbar-item">
+                <td class="navbar-item" id="item-${question.id}">
                     <a href="#question-${question.id}">${index + 1}</a>
                 </td>
             `;
@@ -40,11 +70,11 @@ function displayAllQuestions() {
             questionsHTML += `
                 <div id="question-${question.id}" class="question">
                     <p><strong >Câu hỏi ${index + 1}:</strong> ${question.content}</p>
-                    <ul>
-                        <li><input type="radio" name="choice-${question.id}" value="A">${question.choiceA}</li>
-                        <li><input type="radio" name="choice-${question.id}" value="B">${question.choiceB}</li>
-                        <li><input type="radio" name="choice-${question.id}" value="C">${question.choiceC}</li>
-                        <li><input type="radio" name="choice-${question.id}" value="D">${question.choiceD}</li>
+                    <ul style="margin-left:30px;">
+                        <li><input type="radio" name="choice-${question.id}" class="abc" value="A">${question.choiceA}</li>
+                        <li><input type="radio" name="choice-${question.id}" class="abc" value="B">${question.choiceB}</li>
+                        <li><input type="radio" name="choice-${question.id}" class="abc" value="C">${question.choiceC}</li>
+                        <li><input type="radio" name="choice-${question.id}" class="abc" value="D">${question.choiceD}</li>
                     </ul>
                 </div>
             `;
@@ -58,6 +88,23 @@ function displayAllQuestions() {
         // Gán nội dung của câu hỏi
         const questionContainer = document.querySelector('.question-container');
         questionContainer.innerHTML = questionsHTML;
+        addChangeEventsToInputs();
+}
+
+function addChangeEventsToInputs() {
+    const inputElements = document.querySelectorAll('input');
+    console.log(inputElements);
+    console.log(inputElements.length);
+// Loop through each input element and add event listener
+    inputElements.forEach(input => {
+        input.addEventListener('change', function(event) {
+            console.log(1);
+            const questionId = parseInt(input.name.split('-')[1]);
+            // Gọi hàm thay đổi CSS cho td tương ứng
+            changeNavbarItemStyle(questionId);
+        });
+    });
+    
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -71,41 +118,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalQuestionsSpan = document.getElementById('total-questions');
     const examGradeSpan = document.getElementById('exam-grade');
     const navbar = document.getElementById('navbar'); // Navbar bên phải
-    const urlParams = new URLSearchParams(window.location.search);
-    const examId = urlParams.get('examId');
-    const resultId = urlParams.get('resultId');
-    // Giả định dữ liệu bài thi
-    console.log(examId);
-    console.log(resultId);
- 
     getQuestionByExamId(examId, handleQuestionData);
 
-    // Hiển thị tất cả câu hỏi
 
-    let timeLimit = 2700;
-    function addChangeEventsToInputs() {
-        const allInputs = document.querySelectorAll('input[type="radio"]');
-        allInputs.forEach(input => {
-            input.addEventListener('change', function() {
-                // Lấy id của câu hỏi từ name của input
-                const questionId = parseInt(this.name.split('-')[1]);
-                // Gọi hàm thay đổi CSS cho td tương ứng
-                changeNavbarItemStyle(questionId);
-            });
-        });
-    }
     
     // Hàm thay đổi CSS của td tương ứng với câu hỏi
-    function changeNavbarItemStyle(questionId) {
-        const navbarItem = document.getElementById(`question-${questionId}`);
-        // Thay đổi CSS của td
-        navbarItem.style.backgroundColor = 'red';
-        navbarItem.querySelector('a').style.color = 'white';
-    }
     
     // Đếm ngược thời gian
     function startTimer() {
         // Logic đếm ngược thời gian
+        console.log(timeLimit)
         const timerInterval = setInterval(() => {
                          timeLimit--;
                          if (timeLimit < 0) {
@@ -126,11 +148,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Logic khi nộp bài
     function submitExam() {
         // Hiển thị result-page
-        resultPage.style.display = 'block';
-        showSuccessNotice('Nộp bài thành công');
-        // Ẩn exam-page
-        examPage.style.display = 'none';
-        document.getElementById('navbar-i').remove();
         // Tính điểm số và hiển thị kết quả
         displayResult();
 
@@ -191,9 +208,16 @@ function displayResult() {
     console.log(JSON.stringify(resultData));
     submitResult(resultData, resultId, function(result) {
         if(result.success) {
-            console.log(result);
-            window.location.href = `/User/MyResult/index.html?id=${result.data.id}`;
+            showInfoNotice('Nộp bài thành công');
+            document.getElementById("exam-content").style.display = 'none';
+            document.getElementById('navbar-i').remove();
+            document.getElementById("start-time").innerHTML = parseDatetime(result.data.startTime);
+            document.getElementById("end-time").innerHTML = parseDatetime(result.data.endTime);
+            document.getElementById("point").innerHTML = result.data.point;
+            document.getElementById("result-page").style.display = 'block';
+            document.getElementById("result-link").href = `/User/MyResult/index.html?id=${result.data.id}`;
         } else {
+            showErrorNotice('Nộp bài không thành công');
             console.error();
         }
     })
@@ -202,5 +226,4 @@ function displayResult() {
     // Hiển thị tất cả câu hỏi và bắt đầu đếm ngược thời gian khi trang được tải
     displayAllQuestions();
     startTimer();
-    addChangeEventsToInputs();
 });

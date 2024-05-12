@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/notice.css">
     <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="../assets/js/resultApi.js"></script>
     <script src="../assets/js/questionApi.js"></script>
+    <script src="../assets/js/examApi.js"></script>
     <script src="../assets/js/lib.js"></script>
     <script src="../assets/js/test.js"></script>
     <link rel="stylesheet" type="text/css" href="../assets/css/testpage.css">
@@ -27,32 +29,44 @@
             </a>
         </div>
       </header>
-    <h1>Đề thi kiểm tra môn</h1>
-    <div class="container" style="margin: 30px auto;">
+    <h1>Đề thi kiểm tra</h1>
+    <div class="wrapper" style="min-height: 100%;">
+        <div class="container" style="margin: 30px auto;" id="exam-content">
         
-        <div id="navbar-i" class="navbar-i" style="right:50px; top: 150px;">
-            <div class="timer-and-submit">
-                <div id="timer">Thời gian còn lại: 
-                    <span id="time-left" class ="time-left"></span>
+            <div id="navbar-i" class="navbar-i card" style="right:50px; top: 150px;">
+                <div class="timer-and-submit">
+                    <div id="timer">Thời gian còn lại: 
+                        <span id="time-left" class ="time-left"></span>
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <button id="submit-exam-btn"><span class="btn-text">Nộp bài</span></button>
+                    </div>
                 </div>
-                <div style="display: flex; justify-content: center;">
-                    <button id="submit-exam-btn"><span class="btn-text">Nộp bài</span></button>
+                <div id="navbar" class="navbar"></div>
+            </div> <!-- Navbar bên phải -->
+    
+            <div id="exam-page" class="exam-page">
+                <h2 style="text-align: center;">Bài Thi</h2>
+                <div id="question-container" class="question-container"></div> <!-- Container cho tất cả câu hỏi -->
+                        
+            </div>
+        </div>
+    
+        <div class="container mt-5" id="result-page" style="margin: auto; display: block;">
+            <div class="card text-center" style="border: transparent; background-color: transparent;">
+                <div class="card-body" style="margin: auto;">
+                    <h2 class="card-title">Kết quả bài thi</h2>
+                    <p class="card-text">Điểm số: <span id="point"></span></p>
+                    <p class="card-text">Thời gian làm bài: <span id="start-time"></span></p>
+                    <p class="card-text">Thời gian kết thúc: <span id="end-time"></span></p>
+                    <a class="btn btn-primary" style="color: azure;" id="result-link">Xem kết quả</a>
                 </div>
             </div>
-            <div id="navbar" class="navbar"></div>
-        </div> <!-- Navbar bên phải -->
-
-        <div id="exam-page" class="exam-page">
-            <h2 style="text-align: center;">Bài Thi</h2>
-            <div id="question-container" class="question-container"></div> <!-- Container cho tất cả câu hỏi -->
-                    
-        </div>
-        <div id="result-page" class="page">
-            <h2>Kết Quả</h2>
-            <p id="score">Số câu trả lời đúng: <span id="correct-answers"></span> / <span id="total-questions"></span></p>
-            <p id="grade">Điểm số: <span id="exam-grade"></span></p>
-            <div id="answers-container" class="answers-container"></div> <!-- Container cho câu trả lời và đáp án -->
         </div>
     </div>
+    <div class="footer">
+        PtitExam
+    </div>
+
 </body>
 </html>

@@ -1,3 +1,4 @@
+checkTokenValid()
 function renderExam(data){
     var row = document.createElement('tr');
         row.innerHTML = `

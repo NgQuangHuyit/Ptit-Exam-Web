@@ -65,7 +65,21 @@ function createResult(examId, callback) {
   };
 
   fetch(`http://localhost:8080/results?examId=${examId}`, requestOptions)
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.status === 403) {
+        data = { success: false };
+        return data;
+      }
+      if (response.status === 401) {
+        window.location.href = "/";
+      }
+      if (response.status === 200) {
+        return response.json();
+      }
+      else {
+        window.location.href = "/error.html";
+      }
+    })
     .then((result) => callback(result))
     .catch((error) => console.error(error));
   }

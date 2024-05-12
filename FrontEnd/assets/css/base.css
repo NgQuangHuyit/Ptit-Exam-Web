@@ -21,6 +21,9 @@
     margin-right: auto;
   }
   
+.wrapper {
+  min-height: 100%;
+}
 
 html {
     font-size: 100%;
@@ -41,4 +44,16 @@ html {
 .grid__row {
     display: flex;
     flex-wrap: wrap;
+}
+
+.footer {
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  margin-top: 80px;
+  background-color: #ba2623;
+  color: white;
+  font-size: 30px;
+  padding: 15px;
+  box-sizing: border-box;
 }

@@ -1,3 +1,4 @@
+checkTokenValid()
 function renderQuestionAnswer(data, index) {
     var ele = document.createElement('div');
     ele.classList.add('question-result');

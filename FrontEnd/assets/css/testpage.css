@@ -60,7 +60,7 @@ h1 {
 }
 
 .container {
-  width: 800px;
+  width: 900px;
   margin-left: 10px;
   margin-right: auto;
   background-color: rgba(255, 255, 255, 0.59);
@@ -68,6 +68,7 @@ h1 {
   border:0cqw solid black;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 #navbar table {
   font-size: 15px; /* Điều chỉnh kích thước chữ */

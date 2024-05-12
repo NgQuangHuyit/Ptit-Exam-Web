@@ -79,6 +79,7 @@ public class ExamResultService implements IExamResultService{
         User user = userRepository.findByUsername(name);
         if (user == null) throw new NotFoundException("User", "name", name);
         Exam exam = examRepository.findById(examId).orElseThrow(() -> new NotFoundException("Exam", "id", examId));
+        if  (!exam.getIsActive()) throw new CustomForbiddenException("Không thể bắt đầu làm đề thi này");
         ExamResult examResult = new ExamResult();
         examResult.setUser(user);
         examResult.setExam(exam);

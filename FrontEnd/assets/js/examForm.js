@@ -1,3 +1,4 @@
+checkTokenValid()
 function handlerSubmitExamResponse(response) {
     if (response.success) {
         showSuccessNotice(`Tạo thành công đề thi ${response.data.title}`);

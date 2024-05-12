@@ -1,4 +1,4 @@
-
+checkTokenValid()
 function renderUserRow(data, parentId) {
     var row = document.createElement('tr');
     row.id = `tbl1_row_${data.id}`;

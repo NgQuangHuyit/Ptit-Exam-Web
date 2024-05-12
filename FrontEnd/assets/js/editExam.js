@@ -1,3 +1,5 @@
+checkTokenValid()
+
 class Exam {
     constructor(title, timeAmt, subject, isActive, description) {
         this.title = title;
