@@ -12,6 +12,7 @@
     <script src="../../assets/js/lib.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="../../assets/js/resultApi.js"></script>
     <script src="../../assets/js/examApi.js"></script>
@@ -49,7 +50,8 @@
 
       <div class="container" style="max-width: 1240px;">
         <div class="main-body">
-            <div class="row gutters-sm mb-5">
+            <button class="btn btn-primary row ml-1" id="download"> Xuất báo cáo</button>
+            <div class="row gutters-sm mb-5 mt-3">
                 <div class="col-md-4">
                     <div class="row">
                         <div class="col-sm-12" style="padding: 0 15px;">

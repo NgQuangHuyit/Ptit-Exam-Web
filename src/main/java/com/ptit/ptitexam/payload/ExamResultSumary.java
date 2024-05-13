@@ -46,4 +46,7 @@ public class ExamResultSumary {
     public Long getUserId() {
         return user.getId();
     }
+
+    @JsonGetter("fullname")
+    public String getFullname() {return user.getFullname();}
 }
