@@ -38,7 +38,7 @@ function startResult(id) {
     createResult(id,handleResultResponse);
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded",function() {
     getAllExams(renderAllExams);
 
     document.getElementById("search-form").addEventListener("submit", function(event) {

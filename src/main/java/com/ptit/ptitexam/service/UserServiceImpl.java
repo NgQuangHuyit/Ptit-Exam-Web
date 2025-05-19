@@ -95,6 +95,7 @@ public class UserServiceImpl implements IUserService {
 //        user.setIsActive(updateUserInfo.getIsActive());
         user.setPhoneNumber(updateUserInfo.getPhoneNumber());
         user.setClassID(updateUserInfo.getClassID());
+        user.setGender(updateUserInfo.getGender());
         userRepository.save(user);
         return modelMapper.map(user, UserDetailDto.class);
     }

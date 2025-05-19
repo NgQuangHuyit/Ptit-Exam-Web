@@ -1,0 +1,49 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    hostname: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ptitexam
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-ppassword" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - online-quiz-network
+
+  backend:
+    image: onlinequizbackend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: onlinequizbackend
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DATABASE_HOST: mysql
+      DATABASE_PORT: 3306
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: root
+    networks:
+      - online-quiz-network
+
+volumes:
+  mysql_data:
+    driver: local
+    name: mysql_data
+
+networks:
+  online-quiz-network:
+    driver: bridge

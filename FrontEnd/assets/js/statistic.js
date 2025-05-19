@@ -90,9 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Cấu hình thêm nếu cần
             }
         });
-        genChart('min-score', data.minPoint, '#FF0000')
-        genChart('max-score', data.maxPoint, '#00FF00')
-        genChart('avg-score', data.avgPoint, '#0000FF', width=250, height=365)
+        genChart('min-score', data.minPoint.toFixed(2), '#FF0000')
+        genChart('max-score', data.maxPoint.toFixed(2), '#00FF00')
+        genChart('avg-score', data.avgPoint.toFixed(2), '#0000FF', width=250, height=365)
         // document.getElementById("min-score").innerHTML = data.minPoint;
         // document.getElementById("max-score").innerHTML = data.maxPoint;
         document.getElementById("count-result").innerHTML = data.cnt;
